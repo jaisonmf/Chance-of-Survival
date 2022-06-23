@@ -17,6 +17,8 @@ public class gameController : MonoBehaviour
 
     public Text turnCounter;
     public int turnCount;
+    public int waveCount;
+    public Text waveCounter;
 
     public Text instructions;
     
@@ -26,6 +28,8 @@ public class gameController : MonoBehaviour
         enemyTurn = false;
         turnCount = 0;
         turnCounter.text = "Turn: " + turnCount;
+        waveCount = 0;
+        waveCounter.text = "Wave: " + waveCount;
         instructions.text = ("You have been attacked!\nPress 'E' to continue");
         playerController.healthNum.text = playerController.pHealth.ToString() + "/" + playerController.pMaxHealth.ToString();
         playerController.defenceNum.text = playerController.pDefence.ToString() + "/" + playerController.pMaxDefence.ToString();
@@ -36,13 +40,19 @@ public class gameController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && generated == false)
         {
-            enemyGenerator.EnemyGeneration();
-            gameStart = true;
-            generated = true;
-            PlayerTurn();
+            WaveStart();
             turnCount++;
+            waveCount++;
         }
 
+    }
+
+    public void WaveStart()
+    {
+        enemyGenerator.EnemyGeneration();
+        gameStart = true;
+        generated = true;
+        PlayerTurn();
     }
     public void PlayerTurn()
     {

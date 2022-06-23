@@ -18,7 +18,7 @@ public class enemyGenerator : MonoBehaviour
 
     public void EnemyGeneration()
     {
-        amount = Random.Range(2, 10);
+        amount = Random.Range(2, 2);
         {
             for(int i = 0; i < amount; i++)
             {
@@ -38,9 +38,18 @@ public class enemyGenerator : MonoBehaviour
     public void EnemyStats()
     {
         //Calculates states
-        go.GetComponent<enemyController>().eMaxHealth = Random.Range(25, 75);
-        go.GetComponent<enemyController>().eMaxDamage = Random.Range(5, 10);
-        go.GetComponent<enemyController>().eMinDamage = Random.Range(0, 5);
+        if(gameController.waveCount < 5)
+        {
+            go.GetComponent<enemyController>().eMaxHealth = Random.Range(25, 75);
+            go.GetComponent<enemyController>().eMaxDamage = Random.Range(5, 10);
+            go.GetComponent<enemyController>().eMinDamage = Random.Range(0, 5);
+            go.GetComponent<enemyController>().eHealth = go.GetComponent<enemyController>().eMaxHealth;
+            go.GetComponent<enemyController>().eMaxDefence = 50;
+        }
+        else if (gameController.waveCount > 11)
+        go.GetComponent<enemyController>().eMaxHealth = Random.Range(35, 85);
+        go.GetComponent<enemyController>().eMaxDamage = Random.Range(7, 12);
+        go.GetComponent<enemyController>().eMinDamage = Random.Range(2, 7);
         go.GetComponent<enemyController>().eHealth = go.GetComponent<enemyController>().eMaxHealth;
         go.GetComponent<enemyController>().eMaxDefence = 50;
 

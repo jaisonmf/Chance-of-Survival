@@ -27,13 +27,14 @@ public class playerController : MonoBehaviour
     //Stats
     public int pMaxHealth = 100;
     public int pHealth;    
-    private int pMaxDamage = 20;
-    private int pMinDamage = 5;
+    private int pMaxDamage = 50;
+    private int pMinDamage = 50;
     public int pDamage;
     public int pMaxDefence = 50;
     public int pDefence = 0;
-    public int energy = 5;
+    public int energy;
     public Text energyCount;
+    public int maxEnergy = 5;
 
     //Buttons
     public Button attack;
@@ -46,6 +47,10 @@ public class playerController : MonoBehaviour
     public Animator defendAnim;
     public Text healText;
     public Text defendText;
+
+    //Level Up
+    public int killCount;
+    public GameObject levelOptions;
 
     private void Start()
     {
@@ -81,6 +86,11 @@ public class playerController : MonoBehaviour
 
         }
         Buttons();
+        if (killCount == 3)
+        {
+            levelOptions.SetActive(true);
+            playersTurn = false;
+        }
     }
     //Player turn starts, called by gameController & enemyController
     public void PlayerStart()
@@ -96,6 +106,7 @@ public class playerController : MonoBehaviour
         attack.interactable = true;
         defend.interactable = true;
         end.interactable = true;
+
     }
 
     //Player turn
@@ -109,7 +120,7 @@ public class playerController : MonoBehaviour
 
         }
         //Heal, player MUST have 2 energy points or more
-        if (ButtonPress == 2 && energy >= 2 && pHealth < 100)
+        if (ButtonPress == 2 && energy >= 2 && pHealth < pMaxHealth)
         {
             pHealth += 10;
             healText.text = 10.ToString();
@@ -165,6 +176,7 @@ public class playerController : MonoBehaviour
             enemy.GetComponent<enemyController>().enemy.SetActive(false);
             enemy.GetComponent<enemyController>().alive = false;
             energy += 1;
+            killCount++;
 
         }
 
@@ -184,6 +196,7 @@ public class playerController : MonoBehaviour
         }
         if (alive == false)
         {
+           
             selecting = true;
             winScreen.Victory();
             
@@ -204,7 +217,7 @@ public class playerController : MonoBehaviour
             attack.interactable = false;
         }
         
-        if (energy < 2 || pHealth == 100 || selecting == true || playersTurn == false)
+        if (energy < 2 || pHealth <= pMaxHealth || selecting == true || playersTurn == false)
         {
             heal.interactable = false;
         }
@@ -217,6 +230,40 @@ public class playerController : MonoBehaviour
         if(selecting == true || playersTurn == false)
         {
             end.interactable = false;
+        }
+    }
+
+    public void LevelUp(int LevelUp)
+    {
+        if (LevelUp == 1)
+        {
+            PlayerStart();
+            pMaxHealth += 5;
+            pHealth += 5;
+            healthNum.text = pHealth.ToString() + "/" + pMaxHealth.ToString();
+            healthMeter.UpdateMeter(pHealth, pMaxHealth);
+            levelOptions.SetActive(false);
+            killCount = 0;
+
+
+        }
+        else if (LevelUp == 2)
+        {
+            PlayerStart();
+            pMaxDamage += 3;
+            pMinDamage += 3;
+            levelOptions.SetActive(false);
+            killCount = 0;
+            playersTurn = true;
+        }
+        else if (LevelUp == 3)
+        {
+            PlayerStart();
+            maxEnergy += 1;
+            levelOptions.SetActive(false);
+            killCount = 0;
+            playersTurn = true;
+            energyCount.text = energy.ToString();
         }
     }
 }

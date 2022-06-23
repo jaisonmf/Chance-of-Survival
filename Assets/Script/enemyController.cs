@@ -92,7 +92,7 @@ public class enemyController : MonoBehaviour
         ehealthMeter.UpdateMeter(eHealth, eMaxHealth);
         edefenceMeter.UpdateMeter(eDefence, eMaxDefence);
         gameController.PlayerTurn();
-        playerController.energy = 5;
+        playerController.energy = playerController.maxEnergy;
         playerController.energyCount.text = playerController.energy.ToString();
         isCoroutineOn = false;
     }
