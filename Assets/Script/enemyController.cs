@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class enemyController : MonoBehaviour
 {
+
     //Call scripts
     public gameController gameController;
     public enemyGenerator enemyGenerator;
@@ -81,7 +82,7 @@ public class enemyController : MonoBehaviour
         isCoroutineOn = true;
 
         yield return new WaitForSeconds(time);
-        EnemyGo();
+        EnemyGo(/*this.transform.parent.GetComponent<enemyController>().count*/);
 
         //Checks if the player has died
         if( playerController.pHealth <= 0)
@@ -97,15 +98,24 @@ public class enemyController : MonoBehaviour
         isCoroutineOn = false;
     }
 
-    //Enemy behaviour
-    public void EnemyGo()
+    //Damage calculation
+    private void Damage()
     {
-        if(enemy.GetComponent<enemyController>().eDefence > 0)
+        eDamage = Random.Range(eMaxDamage, eMinDamage);
+    }
+
+
+    //Enemy behaviour
+    public void EnemyGo(/*int listIndex*/)
+    {
+        //GameObject enemy = enemyGenerator.list[listIndex];
+
+
+        if (enemy.GetComponent<enemyController>().eDefence > 0)
         {
             enemy.GetComponent<enemyController>().eDefence = 0;
         }
         Action = Random.Range(1, 7);
-        Debug.Log(Action);
         //Above 75%
         if (enemy.GetComponent<enemyController>().eHealth > enemy.GetComponent<enemyController>().eMaxHealth * 0.75)
         {
@@ -159,7 +169,6 @@ public class enemyController : MonoBehaviour
     public void Attack()
     {
         Damage();
-        Debug.Log("weeeeeeeeeeeeeeeeeeeee");
         //not enough to break defend
         if (enemy.GetComponent<enemyController>().eDamage - playerController.pDefence <= playerController.pDefence)
         {
@@ -194,10 +203,10 @@ public class enemyController : MonoBehaviour
         edefenceMeter.UpdateMeter(eDefence, eMaxDefence);
     }
 
-    //Damage calculation
-    private void Damage()
-    {
-        eDamage = Random.Range(eMaxDamage, eMinDamage);
-    }
+
+}
+
+public class Goblin : enemyController
+{
 
 }
