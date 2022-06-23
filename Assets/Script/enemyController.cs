@@ -48,7 +48,6 @@ public class enemyController : MonoBehaviour
         {
             eHealth = eMaxHealth;
         }
-
         if (gameController.enemyTurn == false)
         {
             selection.SetActive(true);
@@ -64,6 +63,7 @@ public class enemyController : MonoBehaviour
     {
         if (alive == true)
         {
+            selection.SetActive(false);
             playerController.end.interactable = false;
             playerController.defend.interactable = false;
             playerController.attack.interactable = false;

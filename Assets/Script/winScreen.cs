@@ -43,6 +43,8 @@ public class winScreen : MonoBehaviour
             playerController.selecting = false;
             win.SetActive(false);
 
+            
+
             //Wave count + turn cout
             gameController.waveCount++;
             gameController.waveCounter.text = "Wave: " + gameController.waveCount;

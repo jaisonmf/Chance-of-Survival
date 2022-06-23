@@ -622,6 +622,7 @@ MonoBehaviour:
   enemyController: {fileID: 6177071861860799988}
   amount: 0
   goblin: {fileID: 5368971236970148027}
+  boss: {fileID: 5368971236970148027}
   go: {fileID: 5368971236970148027}
   Parent: {fileID: 9025325843399439172}
   list: []
@@ -4181,7 +4182,7 @@ MonoBehaviour:
   gameController: {fileID: 245226853}
   enemyGenerator: {fileID: 400023913}
   playerController: {fileID: 592019421}
-  enemyController: {fileID: 0}
+  enemyController: {fileID: 6177071861860799988}
 --- !u!4 &1758906743
 Transform:
   m_ObjectHideFlags: 0

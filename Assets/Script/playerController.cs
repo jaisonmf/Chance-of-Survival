@@ -27,8 +27,8 @@ public class playerController : MonoBehaviour
     //Stats
     public int pMaxHealth = 100;
     public int pHealth;    
-    private int pMaxDamage = 50;
-    private int pMinDamage = 50;
+    private int pMaxDamage = 5000;
+    private int pMinDamage = 5000;
     public int pDamage;
     public int pMaxDefence = 50;
     public int pDefence = 0;
@@ -95,6 +95,7 @@ public class playerController : MonoBehaviour
     //Player turn starts, called by gameController & enemyController
     public void PlayerStart()
     {
+        
         playersTurn = true;
         energyCount.text = energy.ToString();
         healthNum.text = pHealth.ToString() + "/" + pMaxHealth.ToString();
@@ -117,6 +118,7 @@ public class playerController : MonoBehaviour
         {
             selecting = true;
             energy -= 1;
+
 
         }
         //Heal, player MUST have 2 energy points or more
@@ -177,7 +179,7 @@ public class playerController : MonoBehaviour
             enemy.GetComponent<enemyController>().alive = false;
             energy += 1;
             killCount++;
-
+            
         }
 
         selecting = false;
@@ -196,7 +198,14 @@ public class playerController : MonoBehaviour
         }
         if (alive == false)
         {
-           
+
+            for(int i = 0;i < enemyGenerator.list.Count; i++)
+            {
+                if (enemyGenerator.list[i].GetComponent<enemyController>().eHealth < 0)
+                {
+                    Destroy(enemyGenerator.list[i]);
+                }
+            }
             selecting = true;
             winScreen.Victory();
             
