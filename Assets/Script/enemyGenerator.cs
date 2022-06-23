@@ -21,7 +21,7 @@ public class enemyGenerator : MonoBehaviour
     {
         amount = Random.Range(1, 1);
         {
-            if (gameController.waveCount != 10)
+            if (gameController.waveCount < 10)
             {
                 for (int i = 0; i < amount; i++)
                 {
@@ -40,7 +40,7 @@ public class enemyGenerator : MonoBehaviour
                 go.transform.SetParent(Parent.transform, false);
                 list.Add(go);
                 BossStats();
-                go.GetComponent<bossController>().count = 0;
+                go.GetComponent<enemyController>().count = 0;
                 enemyController.alive = true;
             }
            

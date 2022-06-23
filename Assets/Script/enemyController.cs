@@ -37,9 +37,6 @@ public class enemyController : MonoBehaviour
     public int eDamage;
     public bool alive = true;
 
-
-    public class Goblin { 
-    }
     //Certain stats cannot go over a certain threshold
     private void Update()
     {
@@ -108,6 +105,7 @@ public class enemyController : MonoBehaviour
             enemy.GetComponent<enemyController>().eDefence = 0;
         }
         Action = Random.Range(1, 7);
+        Debug.Log(Action);
         //Above 75%
         if (enemy.GetComponent<enemyController>().eHealth > enemy.GetComponent<enemyController>().eMaxHealth * 0.75)
         {
@@ -161,6 +159,7 @@ public class enemyController : MonoBehaviour
     public void Attack()
     {
         Damage();
+        Debug.Log("weeeeeeeeeeeeeeeeeeeee");
         //not enough to break defend
         if (enemy.GetComponent<enemyController>().eDamage - playerController.pDefence <= playerController.pDefence)
         {
