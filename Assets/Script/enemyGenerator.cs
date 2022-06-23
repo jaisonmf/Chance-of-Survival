@@ -21,25 +21,26 @@ public class enemyGenerator : MonoBehaviour
     {
         amount = Random.Range(1, 1);
         {
-            if(gameController.waveCount != 10)
+            if (gameController.waveCount != 10)
             {
                 for (int i = 0; i < amount; i++)
                 {
-                    go = Instantiate(goblin, new Vector2((Screen.width / (amount + 1)) * (i + 1), 15), Quaternion.identity);
+                    go = Instantiate(goblin, new Vector2((Screen.width / (amount + 1)) * (i + 1), -15), Quaternion.identity);
                     go.transform.SetParent(Parent.transform, false);
                     list.Add(go);
                     EnemyStats();
                     go.GetComponent<enemyController>().count = i;
                     enemyController.alive = true;
+
                 }
             }
             else if (gameController.waveCount == 10)
             {
-                go = Instantiate(boss, new Vector2((Screen.width / (amount + 1)) * (1), 15), Quaternion.identity);
+                go = Instantiate(boss, new Vector2((Screen.width / 2), 150), Quaternion.identity);
                 go.transform.SetParent(Parent.transform, false);
                 list.Add(go);
                 BossStats();
-                go.GetComponent<enemyController>().count = 0;
+                go.GetComponent<bossController>().count = 0;
                 enemyController.alive = true;
             }
            
@@ -74,9 +75,9 @@ public class enemyGenerator : MonoBehaviour
 
     public void BossStats()
     {
-        go.GetComponent<enemyController>().eMaxHealth = Random.Range(100, 200);
-        go.GetComponent<enemyController>().eMaxDamage = Random.Range(10, 20);
-        go.GetComponent<enemyController>().eMinDamage = Random.Range(5, 10);
+        go.GetComponent<enemyController>().eMaxHealth = Random.Range(150, 200);
+        go.GetComponent<enemyController>().eMaxDamage = Random.Range(20, 40);
+        go.GetComponent<enemyController>().eMinDamage = Random.Range(15, 20);
         go.GetComponent<enemyController>().eHealth = go.GetComponent<enemyController>().eMaxHealth;
         go.GetComponent<enemyController>().eMaxDefence = 50;
     }

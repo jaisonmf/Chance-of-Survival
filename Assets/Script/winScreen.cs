@@ -56,6 +56,11 @@ public class winScreen : MonoBehaviour
             playerController.energy = playerController.maxEnergy;
             playerController.pHealth += 15;
             playerController.pDefence = 0;
+            playerController.healthNum.text = playerController.pHealth.ToString() + "/" + playerController.pMaxHealth.ToString();
+            playerController.healthMeter.UpdateMeter(playerController.pHealth, playerController.pMaxHealth);
+            playerController.defenceNum.text = playerController.pDefence.ToString() + "/" + playerController.pMaxDefence.ToString();
+            playerController.defenceMeter.UpdateMeter(playerController.pDefence, playerController.pMaxDefence);
+            playerController.energyCount.text = playerController.energy.ToString();
 
 
 

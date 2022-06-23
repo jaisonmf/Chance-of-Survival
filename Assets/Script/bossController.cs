@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class enemyController : MonoBehaviour
+public class bossController : MonoBehaviour
 {
     //Call scripts
     public gameController gameController;
@@ -36,10 +36,8 @@ public class enemyController : MonoBehaviour
     private int Action;
     public int eDamage;
     public bool alive = true;
+    public bool special = false;
 
-
-    public class Goblin { 
-    }
     //Certain stats cannot go over a certain threshold
     private void Update()
     {
@@ -47,7 +45,7 @@ public class enemyController : MonoBehaviour
         {
             eDefence = eMaxDefence;
         }
-        if(eHealth >= eMaxHealth)
+        if (eHealth >= eMaxHealth)
         {
             eHealth = eMaxHealth;
         }
@@ -87,7 +85,7 @@ public class enemyController : MonoBehaviour
         EnemyGo();
 
         //Checks if the player has died
-        if( playerController.pHealth <= 0)
+        if (playerController.pHealth <= 0)
         {
             loseScreen.DeathScreen();
         }
@@ -103,10 +101,6 @@ public class enemyController : MonoBehaviour
     //Enemy behaviour
     public void EnemyGo()
     {
-        if(enemy.GetComponent<enemyController>().eDefence > 0)
-        {
-            enemy.GetComponent<enemyController>().eDefence = 0;
-        }
         Action = Random.Range(1, 7);
         //Above 75%
         if (enemy.GetComponent<enemyController>().eHealth > enemy.GetComponent<enemyController>().eMaxHealth * 0.75)
@@ -119,13 +113,13 @@ public class enemyController : MonoBehaviour
             {
                 Special();
             }
-            else if(Action == 6)
+            else if (Action == 6)
             {
                 Defend();
             }
         }
         //Above 25%
-        else if (enemy.GetComponent<enemyController>().eHealth > enemy.GetComponent<enemyController>().eMaxHealth * 0.25)
+        else if (enemy.GetComponent<enemyController>().eHealth > enemy.GetComponent<enemyController>().eMaxHealth * 0.50)
         {
             if (Action == 1 || Action == 2)
             {
@@ -143,15 +137,11 @@ public class enemyController : MonoBehaviour
         {
             if (Action <= 4)
             {
-                Defend();
+                Attack();
             }
-            else if (Action == 5)
+            else
             {
                 Special();
-            }
-            else if (Action == 6)
-            {
-                Attack();
             }
         }
 
@@ -183,15 +173,16 @@ public class enemyController : MonoBehaviour
     //Enemy 'special move'
     public void Special()
     {
-        Attack();
-        enemy.GetComponent<enemyController>().eHealth += 10;
+        special = true;
+        enemy.GetComponent<enemyController>().eHealth += 20;
         ehealthMeter.UpdateMeter(eHealth, eMaxHealth);
+
     }
 
     //Enemy defend
     public void Defend()
     {
-        enemy.GetComponent<enemyController>().eDefence += 10;
+        enemy.GetComponent<enemyController>().eDefence += 30;
         edefenceMeter.UpdateMeter(eDefence, eMaxDefence);
     }
 

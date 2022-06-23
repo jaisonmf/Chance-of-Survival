@@ -70,7 +70,9 @@ public class gameController : MonoBehaviour
             {
             enemyGenerator.list[i].GetComponent<enemyController>().EnemyStart();
             aggrovated = true;
-            }
+
+        }
+
     }
 
 }
