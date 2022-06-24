@@ -23,6 +23,9 @@ public class enemyController : MonoBehaviour
     public GameObject damageOutput;
     public Animator damageAnim;
 
+
+    public GameObject typeOfEnemy;
+
     //Delay
     private bool isCoroutineOn;
 
@@ -34,7 +37,7 @@ public class enemyController : MonoBehaviour
     public int eDefence;
     public int eMaxDefence;
     public int count;
-    private int Action;
+    public int Action;
     public int eDamage;
     public bool alive = true;
 
@@ -82,7 +85,7 @@ public class enemyController : MonoBehaviour
         isCoroutineOn = true;
 
         yield return new WaitForSeconds(time);
-        EnemyGo(/*this.transform.parent.GetComponent<enemyController>().count*/);
+        EnemyGo();
 
         //Checks if the player has died
         if( playerController.pHealth <= 0)
@@ -99,114 +102,75 @@ public class enemyController : MonoBehaviour
     }
 
     //Damage calculation
-    private void Damage()
+    public void Damage()
     {
         eDamage = Random.Range(eMaxDamage, eMinDamage);
     }
 
 
     //Enemy behaviour
-    public void EnemyGo(/*int listIndex*/)
+    public void EnemyGo()
     {
-        //GameObject enemy = enemyGenerator.list[listIndex];
-
-
         if (enemy.GetComponent<enemyController>().eDefence > 0)
         {
             enemy.GetComponent<enemyController>().eDefence = 0;
         }
-        Action = Random.Range(1, 7);
-        //Above 75%
-        if (enemy.GetComponent<enemyController>().eHealth > enemy.GetComponent<enemyController>().eMaxHealth * 0.75)
+        
+        Action = Random.Range(0, 7);
+
+
         {
-            if (Action <= 3)
+            if (enemy.GetComponent<enemyController>().eHealth > enemy.GetComponent<enemyController>().eMaxHealth * 0.75)
             {
-                Attack();
+                if (Action <= 3)
+                {
+                    //Attack();
+                }
+                else if (Action <= 5)
+                {
+                    //Special();
+                }
+                else if (Action == 6)
+                {
+                    //Defend();
+                }
             }
-            else if (Action <= 5)
+            //Above 25%
+            else if (enemy.GetComponent<enemyController>().eHealth > enemy.GetComponent<enemyController>().eMaxHealth * 0.25)
             {
-                Special();
+                if (Action == 1 || Action == 2)
+                {
+                    //Attack();
+                }
+                else if (Action == 3 || Action == 4)
+                {
+                    //Defend();
+                }
+
+                //else Special();
             }
-            else if(Action == 6)
+            //Lower than 25%
+            else
             {
-                Defend();
-            }
-        }
-        //Above 25%
-        else if (enemy.GetComponent<enemyController>().eHealth > enemy.GetComponent<enemyController>().eMaxHealth * 0.25)
-        {
-            if (Action == 1 || Action == 2)
-            {
-                Attack();
-            }
-            else if (Action == 3 || Action == 4)
-            {
-                Defend();
+                if (Action <= 4)
+                {
+                    //Defend();
+                }
+                else if (Action == 5)
+                {
+                    //Special();
+                }
+                else if (Action == 6)
+                {
+                    //Attack();
+                }
             }
 
-            else Special();
-        }
-        //Lower than 25%
-        else
-        {
-            if (Action <= 4)
-            {
-                Defend();
-            }
-            else if (Action == 5)
-            {
-                Special();
-            }
-            else if (Action == 6)
-            {
-                Attack();
-            }
-        }
-
-    }
-
-    //Enemy attack against player
-    public void Attack()
-    {
-        Damage();
-        //not enough to break defend
-        if (enemy.GetComponent<enemyController>().eDamage - playerController.pDefence <= playerController.pDefence)
-        {
-            playerController.pDefence -= enemy.GetComponent<enemyController>().eDamage;
-            playerController.defenceMeter.UpdateMeter(playerController.pDefence, playerController.pMaxDefence);
-            playerController.defenceNum.text = playerController.pDefence.ToString() + "/" + playerController.pMaxDefence.ToString();
-        }
-        //breaks defence + goes into health. Also if player has no defence
-        else
-        {
-            playerController.pHealth = playerController.pHealth - enemy.GetComponent<enemyController>().eDamage + playerController.pDefence;
-            playerController.pDefence = 0;
-            playerController.defenceMeter.UpdateMeter(playerController.pDefence, playerController.pMaxDefence);
-            playerController.healthMeter.UpdateMeter(playerController.pHealth, playerController.pMaxHealth);
-            playerController.healthNum.text = playerController.pHealth.ToString() + "/" + playerController.pMaxHealth.ToString();
-            playerController.defenceNum.text = playerController.pDefence.ToString() + "/" + playerController.pMaxDefence.ToString();
         }
 
     }
-    //Enemy 'special move'
-    public void Special()
-    {
-        Attack();
-        enemy.GetComponent<enemyController>().eHealth += 10;
-        ehealthMeter.UpdateMeter(eHealth, eMaxHealth);
-    }
+   
+  
 
-    //Enemy defend
-    public void Defend()
-    {
-        enemy.GetComponent<enemyController>().eDefence += 10;
-        edefenceMeter.UpdateMeter(eDefence, eMaxDefence);
-    }
-
-
-}
-
-public class Goblin : enemyController
-{
 
 }

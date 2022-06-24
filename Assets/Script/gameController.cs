@@ -53,13 +53,15 @@ public class gameController : MonoBehaviour
         gameStart = true;
         generated = true;
         PlayerTurn();
+
+        
     }
     public void PlayerTurn()
     {
             playerController.PlayerStart();
             instructions.text = ("Select your move");
             enemyGenerator.Aggression();
-
+         
 
     }
 
@@ -71,7 +73,7 @@ public class gameController : MonoBehaviour
             enemyGenerator.list[i].GetComponent<enemyController>().EnemyStart();
             aggrovated = true;
 
-        }
+            }
 
     }
 

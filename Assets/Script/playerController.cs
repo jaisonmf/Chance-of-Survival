@@ -8,6 +8,7 @@ public class playerController : MonoBehaviour
     //Call scripts
     public gameController gameControl;
     public enemyGenerator enemyGenerator;
+    public enemyController enemyController; 
     public selectEnemy selectEnemy;
     public loseScreen loseScreen;
     public winScreen winScreen;
@@ -23,6 +24,7 @@ public class playerController : MonoBehaviour
     public bool selecting = false;
     public GameObject selectMenu;
     public bool playersTurn;
+
 
     //Stats
     public int pMaxHealth = 100;
@@ -95,7 +97,6 @@ public class playerController : MonoBehaviour
     //Player turn starts, called by gameController & enemyController
     public void PlayerStart()
     {
-        
         playersTurn = true;
         energyCount.text = energy.ToString();
         healthNum.text = pHealth.ToString() + "/" + pMaxHealth.ToString();
@@ -107,7 +108,6 @@ public class playerController : MonoBehaviour
         attack.interactable = true;
         defend.interactable = true;
         end.interactable = true;
-
     }
 
     //Player turn

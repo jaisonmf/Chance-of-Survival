@@ -9,67 +9,45 @@ public class enemyGenerator : MonoBehaviour
     public enemyController enemyController;
 
     public int amount;
-    public int enemyType;
+    public GameObject enemyType;
     
     public GameObject goblin;
-    public GameObject boss;
+    public GameObject ogre;
     public GameObject go;
     public GameObject Parent;
 
-
+    //Number of enemy
     public List<GameObject> list = new List<GameObject>();
-    
-    
+    //Enemy Type
+    public List<GameObject> Type = new List<GameObject>();
+
+
+    private void Start()
+    {
+        Type[0] = goblin;
+        Type[1] = ogre;
+
+    }
 
     public void EnemyGeneration()
     {
-        amount = Random.Range(1, 5);
+        amount = Random.Range(1, 10);
         {
-            if (gameController.waveCount != 10)
+            for (int i = 0; i < amount; i++)
             {
-                for (int i = 0; i < amount; i++)
+                enemyType = Type[Random.Range(0, Type.Count)];
+
                 {
-                    enemyType = Random.Range(1, 3);
-                    Debug.Log(enemyType);
-
-                    if (enemyType == 1)
-                    {
-                        go = Instantiate(goblin, new Vector2((Screen.width / (amount + 1)) * (i +1), -15), Quaternion.identity);
-                        go.transform.SetParent(Parent.transform, false);
-                        list.Add(go);
-                        EnemyStats();
-                        go.GetComponent<enemyController>().count = i;
-                        enemyController.alive = true;
-                    }
-                    else if (enemyType == 2)
-                    {
-                        go = Instantiate(boss, new Vector2((Screen.width / (amount + 1)) * (i + 1), 150), Quaternion.identity);
-                        go.transform.SetParent(Parent.transform, false);
-                        list.Add(go);
-                        BossStats();
-                        go.GetComponent<enemyController>().count = 0;
-                        enemyController.alive = true;
-                    }
-
+                    go = Instantiate(enemyType, new Vector2((Screen.width / (amount + 1)) * (i + 1), -15), Quaternion.identity);
+                    go.transform.SetParent(Parent.transform, false);
+                    list.Add(go);
+                    EnemyStats();
+                    go.GetComponent<enemyController>().count = i;
+                    enemyController.alive = true;
                 }
-            }
-            else if (gameController.waveCount == 10)
-            {
-                go = Instantiate(boss, new Vector2((Screen.width / 2), 150), Quaternion.identity);
-                go.transform.SetParent(Parent.transform, false);
-                list.Add(go);
-                BossStats();
-                go.GetComponent<enemyController>().count = 0;
-                enemyController.alive = true;
-            }
-           
 
+            }
         }
-    }
-
-    public void EnemyType()
-    {
-       
     }
 
 
@@ -85,7 +63,7 @@ public class enemyGenerator : MonoBehaviour
             go.GetComponent<enemyController>().eHealth = go.GetComponent<enemyController>().eMaxHealth;
             go.GetComponent<enemyController>().eMaxDefence = 50;
         }
-        else if (gameController.waveCount >= 6 && gameController.waveCount != 10)
+        else if (gameController.waveCount >= 6)
         {
             go.GetComponent<enemyController>().eMaxHealth = Random.Range(35, 85);
             go.GetComponent<enemyController>().eMaxDamage = Random.Range(7, 12);
@@ -97,19 +75,10 @@ public class enemyGenerator : MonoBehaviour
     }
 
 
-    public void BossStats()
-    {
-        go.GetComponent<enemyController>().eMaxHealth = Random.Range(300, 500);
-        go.GetComponent<enemyController>().eMaxDamage = Random.Range(20, 40);
-        go.GetComponent<enemyController>().eMinDamage = Random.Range(15, 20);
-        go.GetComponent<enemyController>().eHealth = go.GetComponent<enemyController>().eMaxHealth;
-        go.GetComponent<enemyController>().eMaxDefence = 50;
-    }
-
-
+   
     public void Aggression()
     {
-        if (gameController.turnCount > 7 && gameController.aggrovated)
+        if (gameController.turnCount > 5 && gameController.aggrovated)
         {
             for (int i = 0;i < list.Count; i++)
             {
