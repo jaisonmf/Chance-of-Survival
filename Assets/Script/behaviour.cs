@@ -27,7 +27,9 @@ public class behaviour : enemyController
             playerController.healthNum.text = playerController.pHealth.ToString() + "/" + playerController.pMaxHealth.ToString();
             playerController.defenceNum.text = playerController.pDefence.ToString() + "/" + playerController.pMaxDefence.ToString();
         }
+     
     }
+
     //Enemy 'special move'
     public void Special()
     {

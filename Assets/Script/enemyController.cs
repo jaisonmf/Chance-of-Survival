@@ -92,6 +92,7 @@ public class enemyController : MonoBehaviour
         {
             loseScreen.DeathScreen();
         }
+
         //Updates player health/defence bars, resets player energy to 5, starts the player turn
         ehealthMeter.UpdateMeter(eHealth, eMaxHealth);
         edefenceMeter.UpdateMeter(eDefence, eMaxDefence);
@@ -169,8 +170,8 @@ public class enemyController : MonoBehaviour
         }
 
     }
-   
-  
+
+
 
 
 }
