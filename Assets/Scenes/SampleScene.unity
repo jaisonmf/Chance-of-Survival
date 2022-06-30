@@ -139,7 +139,6 @@ RectTransform:
   - {fileID: 1367238001}
   - {fileID: 1083980284}
   - {fileID: 256650891}
-  - {fileID: 2862359245274974288}
   m_Father: {fileID: 1919399813}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -173,8 +172,9 @@ MonoBehaviour:
   damageText: {fileID: 2063306687}
   damageOutput: {fileID: 2063306684}
   damageAnim: {fileID: 2063306685}
-  typeOfEnemy: {fileID: 6690888455919354404}
+  typeOfEnemy: {fileID: 2118078797595059730}
   eMaxHealth: 0
+  eMinHealth: 0
   eHealth: 0
   eMaxDamage: 0
   eMinDamage: 0
@@ -864,7 +864,6 @@ RectTransform:
   - {fileID: 2109230267}
   - {fileID: 485525238}
   - {fileID: 2121240034}
-  - {fileID: 6940623784561801215}
   m_Father: {fileID: 1919399813}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -982,7 +981,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameController: {fileID: 245226853}
-  enemyController: {fileID: 6177071861860799988}
+  enemyController: {fileID: 29863562}
+  csvReader: {fileID: 1707609656}
+  goblinStats: {fileID: 5368971236970148028}
+  ogreStats: {fileID: 2118078797595059731}
   amount: 0
   enemyType: {fileID: 0}
   goblin: {fileID: 5368971236970148027}
@@ -1005,7 +1007,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &421091094
 GameObject:
@@ -1339,8 +1341,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 11, y: 104}
-  m_SizeDelta: {x: 700, y: 100}
+  m_AnchoredPosition: {x: 11, y: 79}
+  m_SizeDelta: {x: 700, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &552195496
 MonoBehaviour:
@@ -3479,7 +3481,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1161555560
 GameObject:
@@ -5128,9 +5130,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c6b271b1428a3144848a28ae866d477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textAssetData: {fileID: 11500000, guid: 7c6b271b1428a3144848a28ae866d477, type: 3}
-  myPlayerList:
-    player: []
+  textAssetData: {fileID: 4900000, guid: d74a8dcbbee31874bb0155606c298af7, type: 3}
+  myEnemyList:
+    enemy: []
 --- !u!4 &1707609657
 Transform:
   m_ObjectHideFlags: 0
@@ -5143,7 +5145,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1751860949
 GameObject:
@@ -5268,7 +5270,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1759245060
 GameObject:
@@ -6576,7 +6578,7 @@ Transform:
   - {fileID: 1379518193}
   - {fileID: 1097653881}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1983119726
 GameObject:
@@ -7746,6 +7748,7 @@ GameObject:
   m_Component:
   - component: {fileID: 29863561}
   - component: {fileID: 29863562}
+  - component: {fileID: 2118078797595059731}
   m_Layer: 5
   m_Name: ogre
   m_TagString: Untagged
@@ -7753,62 +7756,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &2862359245274974288
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6690888455919354404}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 29863561}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4238589986178839566
+--- !u!114 &2118078797595059731
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6690888455919354404}
+  m_GameObject: {fileID: 2118078797595059730}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7d5475670d35944b98e81afea1478b2, type: 3}
+  m_Script: {fileID: 11500000, guid: f5e2cfcf4930e2f48ac8f51f48cc6fa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameController: {fileID: 245226853}
-  enemyGenerator: {fileID: 400023913}
-  playerController: {fileID: 592019421}
-  winScreen: {fileID: 1758906742}
-  loseScreen: {fileID: 1160639353}
-  enemy: {fileID: 2118078797595059730}
-  enemyBars: {fileID: 2118078797595059730}
-  selection: {fileID: 256650890}
-  ehealthMeter: {fileID: 1367237999}
-  edefenceMeter: {fileID: 1083980282}
-  damageText: {fileID: 2063306687}
-  damageOutput: {fileID: 2063306684}
-  damageAnim: {fileID: 2063306685}
-  typeOfEnemy: {fileID: 0}
-  eMaxHealth: 0
-  eHealth: 0
-  eMaxDamage: 0
-  eMinDamage: 0
-  eDefence: 0
-  eMaxDefence: 0
-  count: 0
-  Action: 0
-  eDamage: 0
-  alive: 1
   enemyController: {fileID: 29863562}
+  enemyGenerator: {fileID: 400023913}
+  cSVReader: {fileID: 1707609656}
+  go: {fileID: 2118078797595059730}
 --- !u!1 &5368971236970148027
 GameObject:
   m_ObjectHideFlags: 0
@@ -7819,6 +7782,7 @@ GameObject:
   m_Component:
   - component: {fileID: 290495094}
   - component: {fileID: 6177071861860799988}
+  - component: {fileID: 5368971236970148028}
   m_Layer: 5
   m_Name: goblin
   m_TagString: Untagged
@@ -7826,6 +7790,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5368971236970148028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5368971236970148027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab1a64f9c53b1ba4183d2e6358886e1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyController: {fileID: 6177071861860799988}
+  enemyGenerator: {fileID: 400023913}
+  cSVReader: {fileID: 1707609656}
+  go: {fileID: 5368971236970148027}
 --- !u!114 &6177071861860799988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7853,6 +7833,7 @@ MonoBehaviour:
   damageAnim: {fileID: 1263658521}
   typeOfEnemy: {fileID: 5368971236970148027}
   eMaxHealth: 0
+  eMinHealth: 0
   eHealth: 0
   eMaxDamage: 0
   eMinDamage: 0
@@ -7862,96 +7843,6 @@ MonoBehaviour:
   Action: 0
   eDamage: 0
   alive: 1
---- !u!1 &6690888455919354404
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2862359245274974288}
-  - component: {fileID: 4238589986178839566}
-  m_Layer: 5
-  m_Name: behaviour
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &6940623784561801215
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8677042217024867935}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 290495094}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &8677042217024867935
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6940623784561801215}
-  - component: {fileID: 9023339246960954273}
-  m_Layer: 5
-  m_Name: behaviour
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &9023339246960954273
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8677042217024867935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7d5475670d35944b98e81afea1478b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameController: {fileID: 245226853}
-  enemyGenerator: {fileID: 400023913}
-  playerController: {fileID: 592019421}
-  winScreen: {fileID: 1758906742}
-  loseScreen: {fileID: 1160639353}
-  enemy: {fileID: 5368971236970148027}
-  enemyBars: {fileID: 5368971236970148027}
-  selection: {fileID: 2121240030}
-  ehealthMeter: {fileID: 2109230269}
-  edefenceMeter: {fileID: 485525236}
-  damageText: {fileID: 1263658522}
-  damageOutput: {fileID: 0}
-  damageAnim: {fileID: 1263658521}
-  typeOfEnemy: {fileID: 1263658520}
-  eMaxHealth: 0
-  eHealth: 0
-  eMaxDamage: 0
-  eMinDamage: 0
-  eDefence: 0
-  eMaxDefence: 0
-  count: 0
-  Action: 0
-  eDamage: 0
-  alive: 1
-  enemyController: {fileID: 6177071861860799988}
 --- !u!1 &9025325843399439172
 GameObject:
   m_ObjectHideFlags: 0

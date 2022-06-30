@@ -36,8 +36,8 @@ public class gameController : MonoBehaviour
         instructions.text = ("You have been attacked!\nPress 'E' to continue");
         playerController.healthNum.text = playerController.pHealth.ToString() + "/" + playerController.pMaxHealth.ToString();
         playerController.defenceNum.text = playerController.pDefence.ToString() + "/" + playerController.pMaxDefence.ToString();
-   
-    
+
+
     }
     void Update()
     {
@@ -57,23 +57,31 @@ public class gameController : MonoBehaviour
         generated = true;
         PlayerTurn();
 
-        
+
     }
     public void PlayerTurn()
     {
-            playerController.PlayerStart();
-            instructions.text = ("Select your move");
-            enemyGenerator.Aggression();
-         
+        playerController.PlayerStart();
+        instructions.text = ("Select your move");
+        enemyGenerator.Aggression();
+
 
     }
 
     public void EnemyTurn()
     {
         instructions.text = ("");
-        StartCoroutine(Delay(3));
+        for (int i = 0; i < enemyGenerator.list.Count; i++)
+        {
+            StartCoroutine(Delay(3));
+            enemyGenerator.list[i].GetComponent<enemyController>().EnemyStart();
+            aggrovated = true;
+
+        }
 
     }
+
+
 
 
     IEnumerator Delay(float time)
@@ -84,20 +92,12 @@ public class gameController : MonoBehaviour
         isCoroutineOn = true;
 
         yield return new WaitForSeconds(time);
-        Enemy();
+      
+        yield return new WaitForSeconds(time);
 
-       
+
         isCoroutineOn = false;
-    }
 
-    private void Enemy()
-    {
-        for (int i = 0; i < enemyGenerator.list.Count; i++)
-        {
-            enemyGenerator.list[i].GetComponent<enemyController>().EnemyStart();
-            aggrovated = true;
-        }
 
     }
-
 }

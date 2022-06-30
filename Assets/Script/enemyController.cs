@@ -87,9 +87,10 @@ public class enemyController : MonoBehaviour
 
         yield return new WaitForSeconds(time);
         EnemyGo();
+        yield return new WaitForSeconds(time);
 
         //Checks if the player has died
-        if( playerController.pHealth <= 0)
+        if ( playerController.pHealth <= 0)
         {
             loseScreen.DeathScreen();
         }
