@@ -21,8 +21,11 @@ public class gameController : MonoBehaviour
     public Text waveCounter;
 
     public Text instructions;
-    
-    
+
+
+    private bool isCoroutineOn;
+
+
     private void Start()
     {
         enemyTurn = false;
@@ -68,12 +71,32 @@ public class gameController : MonoBehaviour
     public void EnemyTurn()
     {
         instructions.text = ("");
-            for (int i = 0; i < enemyGenerator.list.Count; i++)
-            {
+        StartCoroutine(Delay(3));
+
+    }
+
+
+    IEnumerator Delay(float time)
+    {
+        if (isCoroutineOn)
+            yield break;
+
+        isCoroutineOn = true;
+
+        yield return new WaitForSeconds(time);
+        Enemy();
+
+       
+        isCoroutineOn = false;
+    }
+
+    private void Enemy()
+    {
+        for (int i = 0; i < enemyGenerator.list.Count; i++)
+        {
             enemyGenerator.list[i].GetComponent<enemyController>().EnemyStart();
             aggrovated = true;
-
-            }
+        }
 
     }
 

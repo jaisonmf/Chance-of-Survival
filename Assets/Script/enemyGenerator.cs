@@ -7,6 +7,9 @@ public class enemyGenerator : MonoBehaviour
 {
     public gameController gameController;
     public enemyController enemyController;
+    public CSVReader csvReader;
+    public goblin goblinStats;
+    public ogre ogreStats;
 
     public int amount;
     public GameObject enemyType;
@@ -25,7 +28,10 @@ public class enemyGenerator : MonoBehaviour
     private void Start()
     {
         Type[0] = goblin;
+        goblinStats.Goblin();
         Type[1] = ogre;
+        ogreStats.Ogre();
+
 
     }
 
@@ -42,6 +48,7 @@ public class enemyGenerator : MonoBehaviour
                     go.transform.SetParent(Parent.transform, false);
                     list.Add(go);
                     EnemyStats();
+
                     go.GetComponent<enemyController>().count = i;
                     enemyController.alive = true;
                 }
@@ -57,24 +64,12 @@ public class enemyGenerator : MonoBehaviour
         //Calculates states
         if(gameController.waveCount <= 5)
         {
-            go.GetComponent<enemyController>().eMaxHealth = Random.Range(25, 75);
-            go.GetComponent<enemyController>().eMaxDamage = Random.Range(5, 10);
-            go.GetComponent<enemyController>().eMinDamage = Random.Range(0, 5);
-            go.GetComponent<enemyController>().eHealth = go.GetComponent<enemyController>().eMaxHealth;
+            go.GetComponent<enemyController>().eHealth = Random.Range(go.GetComponent<enemyController>().eMinHealth, go.GetComponent<enemyController>().eMaxHealth);
             go.GetComponent<enemyController>().eMaxDefence = 50;
-        }
-        else if (gameController.waveCount >= 6)
-        {
-            go.GetComponent<enemyController>().eMaxHealth = Random.Range(35, 85);
-            go.GetComponent<enemyController>().eMaxDamage = Random.Range(7, 12);
-            go.GetComponent<enemyController>().eMinDamage = Random.Range(2, 7);
-            go.GetComponent<enemyController>().eHealth = go.GetComponent<enemyController>().eMaxHealth;
-            go.GetComponent<enemyController>().eMaxDefence = 50;
-
         }
     }
 
-
+    
    
     public void Aggression()
     {

@@ -31,6 +31,7 @@ public class enemyController : MonoBehaviour
 
     //Stats
     public int eMaxHealth;
+    public int eMinHealth;
     public int eHealth;
     public int eMaxDamage;
     public int eMinDamage;
@@ -125,15 +126,15 @@ public class enemyController : MonoBehaviour
             {
                 if (Action <= 3)
                 {
-                    //Attack();
+                    Attack();
                 }
                 else if (Action <= 5)
                 {
-                    //Special();
+                    Attack();
                 }
                 else if (Action == 6)
                 {
-                    //Defend();
+                    Attack();
                 }
             }
             //Above 25%
@@ -171,7 +172,10 @@ public class enemyController : MonoBehaviour
 
     }
 
-
+    public void Attack()
+    {
+        Debug.Log("weeeeeeeeeeeee");
+    }
 
 
 }
