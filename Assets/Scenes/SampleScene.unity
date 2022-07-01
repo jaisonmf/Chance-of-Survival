@@ -184,6 +184,9 @@ MonoBehaviour:
   Action: 0
   eDamage: 0
   alive: 1
+  attacking: 0
+  defending: 0
+  special: 0
 --- !u!1 &44464128
 GameObject:
   m_ObjectHideFlags: 0
@@ -7771,6 +7774,7 @@ MonoBehaviour:
   enemyController: {fileID: 29863562}
   enemyGenerator: {fileID: 400023913}
   cSVReader: {fileID: 1707609656}
+  playerController: {fileID: 592019421}
   go: {fileID: 2118078797595059730}
 --- !u!1 &5368971236970148027
 GameObject:
@@ -7805,6 +7809,7 @@ MonoBehaviour:
   enemyController: {fileID: 6177071861860799988}
   enemyGenerator: {fileID: 400023913}
   cSVReader: {fileID: 1707609656}
+  playerController: {fileID: 592019421}
   go: {fileID: 5368971236970148027}
 --- !u!114 &6177071861860799988
 MonoBehaviour:
@@ -7843,6 +7848,9 @@ MonoBehaviour:
   Action: 0
   eDamage: 0
   alive: 1
+  attacking: 0
+  defending: 0
+  special: 0
 --- !u!1 &9025325843399439172
 GameObject:
   m_ObjectHideFlags: 0

@@ -42,6 +42,10 @@ public class enemyController : MonoBehaviour
     public int eDamage;
     public bool alive = true;
 
+    public bool attacking = false;
+    public bool defending = false;
+    public bool special = false;
+
     //Certain stats cannot go over a certain threshold
     private void Update()
     {
@@ -87,7 +91,6 @@ public class enemyController : MonoBehaviour
 
         yield return new WaitForSeconds(time);
         EnemyGo();
-        yield return new WaitForSeconds(time);
 
         //Checks if the player has died
         if ( playerController.pHealth <= 0)
@@ -127,15 +130,15 @@ public class enemyController : MonoBehaviour
             {
                 if (Action <= 3)
                 {
-                    Attack();
+                    attacking = true;
                 }
                 else if (Action <= 5)
                 {
-                    Special();
+                    special = true;
                 }
                 else if (Action == 6)
                 {
-                    Defend();
+                    defending = true;
                 }
             }
             //Above 25%
@@ -143,29 +146,29 @@ public class enemyController : MonoBehaviour
             {
                 if (Action == 1 || Action == 2)
                 {
-                    Attack();
+                    attacking = true;
                 }
                 else if (Action == 3 || Action == 4)
                 {
-                    Defend();
+                    defending = true;
                 }
 
-                else Special();
+                else special = true;
             }
             //Lower than 25%
             else
             {
                 if (Action <= 4)
                 {
-                    Defend();
+                    defending = true;
                 }
                 else if (Action == 5)
                 {
-                    Special();
+                    special = true;
                 }
                 else if (Action == 6)
                 {
-                    Attack();
+                    attacking = true;
                 }
             }
 
@@ -173,40 +176,7 @@ public class enemyController : MonoBehaviour
 
     }
 
-    public void Attack()
-    {
-        Damage();
-        //not enough to break defend
-        if (enemy.GetComponent<enemyController>().eDamage - playerController.pDefence <= playerController.pDefence)
-        {
-            playerController.pDefence -= enemy.GetComponent<enemyController>().eDamage;
-            playerController.defenceMeter.UpdateMeter(playerController.pDefence, playerController.pMaxDefence);
-            playerController.defenceNum.text = playerController.pDefence.ToString() + "/" + playerController.pMaxDefence.ToString();
-        }
-        //breaks defence + goes into health. Also if player has no defence
-        else
-        {
-            playerController.pHealth = playerController.pHealth - enemy.GetComponent<enemyController>().eDamage + playerController.pDefence;
-            playerController.pDefence = 0;
-            playerController.defenceMeter.UpdateMeter(playerController.pDefence, playerController.pMaxDefence);
-            playerController.healthMeter.UpdateMeter(playerController.pHealth, playerController.pMaxHealth);
-            playerController.healthNum.text = playerController.pHealth.ToString() + "/" + playerController.pMaxHealth.ToString();
-            playerController.defenceNum.text = playerController.pDefence.ToString() + "/" + playerController.pMaxDefence.ToString();
-        }
-    }
-    public void Special()
-    {
-        Attack();
-        enemy.GetComponent<enemyController>().eHealth += 10;
-        ehealthMeter.UpdateMeter(enemy.GetComponent<enemyController>().eHealth, enemy.GetComponent<enemyController>().eMaxHealth);
-    }
-
-    //Enemy defend
-    public void Defend()
-    {
-        enemy.GetComponent<enemyController>().eDefence += 10;
-        edefenceMeter.UpdateMeter(enemy.GetComponent<enemyController>().eDefence, enemy.GetComponent<enemyController>().eMaxDefence);
-    }
+    
 
 
 }
