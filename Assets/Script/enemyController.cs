@@ -131,11 +131,11 @@ public class enemyController : MonoBehaviour
                 }
                 else if (Action <= 5)
                 {
-                    Attack();
+                    Special();
                 }
                 else if (Action == 6)
                 {
-                    Attack();
+                    Defend();
                 }
             }
             //Above 25%
@@ -143,29 +143,29 @@ public class enemyController : MonoBehaviour
             {
                 if (Action == 1 || Action == 2)
                 {
-                    //Attack();
+                    Attack();
                 }
                 else if (Action == 3 || Action == 4)
                 {
-                    //Defend();
+                    Defend();
                 }
 
-                //else Special();
+                else Special();
             }
             //Lower than 25%
             else
             {
                 if (Action <= 4)
                 {
-                    //Defend();
+                    Defend();
                 }
                 else if (Action == 5)
                 {
-                    //Special();
+                    Special();
                 }
                 else if (Action == 6)
                 {
-                    //Attack();
+                    Attack();
                 }
             }
 
@@ -175,7 +175,37 @@ public class enemyController : MonoBehaviour
 
     public void Attack()
     {
-        Debug.Log("weeeeeeeeeeeee");
+        Damage();
+        //not enough to break defend
+        if (enemy.GetComponent<enemyController>().eDamage - playerController.pDefence <= playerController.pDefence)
+        {
+            playerController.pDefence -= enemy.GetComponent<enemyController>().eDamage;
+            playerController.defenceMeter.UpdateMeter(playerController.pDefence, playerController.pMaxDefence);
+            playerController.defenceNum.text = playerController.pDefence.ToString() + "/" + playerController.pMaxDefence.ToString();
+        }
+        //breaks defence + goes into health. Also if player has no defence
+        else
+        {
+            playerController.pHealth = playerController.pHealth - enemy.GetComponent<enemyController>().eDamage + playerController.pDefence;
+            playerController.pDefence = 0;
+            playerController.defenceMeter.UpdateMeter(playerController.pDefence, playerController.pMaxDefence);
+            playerController.healthMeter.UpdateMeter(playerController.pHealth, playerController.pMaxHealth);
+            playerController.healthNum.text = playerController.pHealth.ToString() + "/" + playerController.pMaxHealth.ToString();
+            playerController.defenceNum.text = playerController.pDefence.ToString() + "/" + playerController.pMaxDefence.ToString();
+        }
+    }
+    public void Special()
+    {
+        Attack();
+        enemy.GetComponent<enemyController>().eHealth += 10;
+        ehealthMeter.UpdateMeter(enemy.GetComponent<enemyController>().eHealth, enemy.GetComponent<enemyController>().eMaxHealth);
+    }
+
+    //Enemy defend
+    public void Defend()
+    {
+        enemy.GetComponent<enemyController>().eDefence += 10;
+        edefenceMeter.UpdateMeter(enemy.GetComponent<enemyController>().eDefence, enemy.GetComponent<enemyController>().eMaxDefence);
     }
 
 

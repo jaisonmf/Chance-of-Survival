@@ -29,8 +29,6 @@ public class CSVReader : MonoBehaviour
     void Start()
     {
         ReadCSV();
-
-
     }
 
 

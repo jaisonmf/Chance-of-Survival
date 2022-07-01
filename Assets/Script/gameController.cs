@@ -73,7 +73,6 @@ public class gameController : MonoBehaviour
         instructions.text = ("");
         for (int i = 0; i < enemyGenerator.list.Count; i++)
         {
-            StartCoroutine(Delay(3));
             enemyGenerator.list[i].GetComponent<enemyController>().EnemyStart();
             aggrovated = true;
 
@@ -81,23 +80,4 @@ public class gameController : MonoBehaviour
 
     }
 
-
-
-
-    IEnumerator Delay(float time)
-    {
-        if (isCoroutineOn)
-            yield break;
-
-        isCoroutineOn = true;
-
-        yield return new WaitForSeconds(time);
-      
-        yield return new WaitForSeconds(time);
-
-
-        isCoroutineOn = false;
-
-
-    }
 }

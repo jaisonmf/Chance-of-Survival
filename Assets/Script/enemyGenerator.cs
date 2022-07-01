@@ -28,15 +28,15 @@ public class enemyGenerator : MonoBehaviour
     private void Start()
     {
         Type[0] = goblin;
-        goblinStats.Goblin();
+        
         Type[1] = ogre;
-        ogreStats.Ogre();
-
-
+        
     }
 
     public void EnemyGeneration()
     {
+        goblinStats.Goblin();
+        ogreStats.Ogre();
         amount = Random.Range(1, 10);
         {
             for (int i = 0; i < amount; i++)
@@ -62,11 +62,10 @@ public class enemyGenerator : MonoBehaviour
     public void EnemyStats()
     {
         //Calculates states
-        if(gameController.waveCount <= 5)
-        {
-            go.GetComponent<enemyController>().eHealth = Random.Range(go.GetComponent<enemyController>().eMinHealth, go.GetComponent<enemyController>().eMaxHealth);
+            go.GetComponent<enemyController>().eMaxHealth = Random.Range(go.GetComponent<enemyController>().eMinHealth, go.GetComponent<enemyController>().eMaxHealth);
             go.GetComponent<enemyController>().eMaxDefence = 50;
-        }
+        go.GetComponent<enemyController>().eHealth = go.GetComponent<enemyController>().eMaxHealth;
+
     }
 
     

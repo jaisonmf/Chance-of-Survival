@@ -14,7 +14,7 @@ public class ogre : MonoBehaviour
     public void Ogre()
     {
         go.GetComponent<enemyController>().eMaxHealth = cSVReader.myEnemyList.enemy[1].maxHealth;
-        go.GetComponent<enemyController>().eMinHealth = cSVReader.myEnemyList.enemy[1].maxHealth;
+        go.GetComponent<enemyController>().eMinHealth = cSVReader.myEnemyList.enemy[1].minHealth;
 
         go.GetComponent<enemyController>().eMaxDamage = cSVReader.myEnemyList.enemy[1].maxDamage;
         go.GetComponent<enemyController>().eMinDamage = cSVReader.myEnemyList.enemy[1].minDamage;
