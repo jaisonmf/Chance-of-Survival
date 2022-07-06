@@ -12,6 +12,7 @@ public class playerController : MonoBehaviour
     public selectEnemy selectEnemy;
     public loseScreen loseScreen;
     public winScreen winScreen;
+    public audioController audioController;
 
     //Sliders
     public propertyMeter healthMeter;
@@ -144,6 +145,7 @@ public class playerController : MonoBehaviour
         //End Turn, player can end turn whenever
         if (ButtonPress == 4)
         {
+            // !!!!!!!!!!!!!!!FOR TIM: ALL OF THIS HAPPENS WHEN YOU END TURN!!!!!!!!!!!!!!!
             gameControl.EnemyTurn();
             gameControl.turnCounter.text = "Turn: " + gameControl.turnCount;
             gameControl.turnCount += 1;
@@ -169,11 +171,13 @@ public class playerController : MonoBehaviour
             enemy.GetComponent<enemyController>().edefenceMeter.UpdateMeter(enemy.GetComponent<enemyController>().eDefence, enemy.GetComponent<enemyController>().eMaxDefence);
             enemy.GetComponent<enemyController>().ehealthMeter.UpdateMeter(enemy.GetComponent<enemyController>().eHealth, enemy.GetComponent<enemyController>().eMaxHealth);
         }
+        // !!!!!!!!!!!!!!!FOR TIM: ALL OF THIS HAPPENS WHEN YOU SELECT AND HIT AN ENEMY!!!!!!!!!!!!!!!
         enemy.GetComponent<enemyController>().hit = true;
         enemy.GetComponent<enemyController>().damageOutput.SetActive(true);
         enemy.GetComponent<enemyController>().damageText.text = pDamage.ToString();
         enemy.GetComponent<enemyController>().damageAnim.Play("damage");
         
+
         if (enemy.GetComponent<enemyController>().eHealth <= 0)
         {
             

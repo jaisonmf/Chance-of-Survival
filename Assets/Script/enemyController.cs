@@ -12,6 +12,7 @@ public class enemyController : MonoBehaviour
     public playerController playerController;
     public winScreen winScreen;
     public loseScreen loseScreen;
+    public audioController audioController;
 
     //Enemy GUI
     public GameObject enemy;
