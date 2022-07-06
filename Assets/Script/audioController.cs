@@ -6,6 +6,9 @@ public class audioController : MonoBehaviour
 {
     public AudioClip[] hurtArray;
     public AudioClip[] dyingArray;
+    public AudioClip[] playerAttackingArray;
+    public AudioClip[] playerEndArray;
+    public AudioClip[] playerHitArray;
     public AudioSource playedSound;
     public void Hurt()
     {
@@ -27,4 +30,35 @@ public class audioController : MonoBehaviour
     {
         return dyingArray[Random.Range(0, dyingArray.Length)];
     }
+
+    public void PlayerAttackingSound()
+    {
+        playedSound.PlayOneShot(playerAttackingSound());
+    }
+
+    AudioClip playerAttackingSound()
+    {
+        return playerAttackingArray[Random.Range(0, playerAttackingArray.Length)];
+    }
+
+    public void PlayerEndSound()
+    {
+        playedSound.PlayOneShot(playerEndSound());
+    }
+
+    AudioClip playerEndSound()
+    {
+        return playerEndArray[Random.Range(0, playerEndArray.Length)];
+    }
+
+    public void PlayerHitSound()
+    {
+        playedSound.PlayOneShot(playerHitSound());
+    }
+
+    AudioClip playerHitSound()
+    {
+        return playerHitArray[Random.Range(0, playerHitArray.Length)];
+    }
+
 }
