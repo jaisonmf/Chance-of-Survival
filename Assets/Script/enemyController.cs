@@ -16,12 +16,16 @@ public class enemyController : MonoBehaviour
     //Enemy GUI
     public GameObject enemy;
     public GameObject enemyBars;
+    public GameObject healthbar;
     public GameObject selection;
+    public GameObject selectArrow;
     public propertyMeter ehealthMeter;
     public propertyMeter edefenceMeter;
     public Text damageText;
     public GameObject damageOutput;
     public Animator damageAnim;
+    public Image image;
+
 
 
     public GameObject typeOfEnemy;
@@ -45,6 +49,8 @@ public class enemyController : MonoBehaviour
     public bool attacking = false;
     public bool defending = false;
     public bool special = false;
+    public bool hit = false;
+    public bool dead = false;
 
     //Certain stats cannot go over a certain threshold
     private void Update()
@@ -65,11 +71,13 @@ public class enemyController : MonoBehaviour
         {
             selection.SetActive(false);
         }
+
     }
 
     //Enemy delay on turn + Enemy turn start
     public void EnemyStart()
     {
+        
         if (alive == true)
         {
             selection.SetActive(false);
@@ -78,6 +86,10 @@ public class enemyController : MonoBehaviour
             playerController.attack.interactable = false;
             playerController.heal.interactable = false;
             StartCoroutine(Delay(3));
+        }
+        else
+        {
+            enemy.SetActive(false);
         }
     }
 

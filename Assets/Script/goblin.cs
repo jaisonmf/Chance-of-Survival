@@ -8,8 +8,11 @@ public class goblin : MonoBehaviour
     public enemyGenerator enemyGenerator;
     public CSVReader cSVReader;
     public playerController playerController;
+    public audioController audioController;
 
     public GameObject go;
+
+
 
 
     public void Goblin()
@@ -37,7 +40,22 @@ public class goblin : MonoBehaviour
         {
             Special();
         }
+
+        if(go.GetComponent<enemyController>().hit == true)
+        {
+            audioController.Hurt();
+            go.GetComponent<enemyController>().hit = false;
+        }
+
+        if (go.GetComponent<enemyController>().dead == true)
+        {
+            audioController.Dying();
+            go.GetComponent<enemyController>().dead = false;
+        }
     }
+
+
+  
     public void Attack()
     {
         enemyController.enemy.GetComponent<enemyController>().Damage();

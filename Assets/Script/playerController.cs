@@ -29,8 +29,8 @@ public class playerController : MonoBehaviour
     //Stats
     public int pMaxHealth = 100;
     public int pHealth;    
-    private int pMaxDamage = 7;
-    private int pMinDamage = 20;
+    private int pMaxDamage = 20;
+    private int pMinDamage = 10;
     public int pDamage;
     public int pMaxDefence = 50;
     public int pDefence = 0;
@@ -169,16 +169,22 @@ public class playerController : MonoBehaviour
             enemy.GetComponent<enemyController>().edefenceMeter.UpdateMeter(enemy.GetComponent<enemyController>().eDefence, enemy.GetComponent<enemyController>().eMaxDefence);
             enemy.GetComponent<enemyController>().ehealthMeter.UpdateMeter(enemy.GetComponent<enemyController>().eHealth, enemy.GetComponent<enemyController>().eMaxHealth);
         }
+        enemy.GetComponent<enemyController>().hit = true;
         enemy.GetComponent<enemyController>().damageOutput.SetActive(true);
         enemy.GetComponent<enemyController>().damageText.text = pDamage.ToString();
         enemy.GetComponent<enemyController>().damageAnim.Play("damage");
         
         if (enemy.GetComponent<enemyController>().eHealth <= 0)
         {
-            enemy.GetComponent<enemyController>().enemy.SetActive(false);
+            
+            enemy.GetComponent<enemyController>().dead = true;
             enemy.GetComponent<enemyController>().alive = false;
+            enemy.GetComponent<enemyController>().image.enabled = false;
+            enemy.GetComponent<enemyController>().healthbar.SetActive(false);
+            enemy.GetComponent<enemyController>().selectArrow.transform.position = new Vector2(0, -200);
             energy += 1;
             killCount++;
+
             
         }
 
