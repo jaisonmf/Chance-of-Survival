@@ -88,6 +88,7 @@ public class playerController : MonoBehaviour
             loseScreen.DeathScreen();
 
         }
+
         Buttons();
         if (killCount == 3)
         {
@@ -105,9 +106,6 @@ public class playerController : MonoBehaviour
         defenceNum.text = pDefence.ToString() + "/" + pMaxDefence.ToString();
         defenceMeter.UpdateMeter(pDefence, pMaxDefence);
 
-        heal.interactable = true;
-        attack.interactable = true;
-        defend.interactable = true;
         end.interactable = true;
     }
 
@@ -235,21 +233,34 @@ public class playerController : MonoBehaviour
         {
             attack.interactable = false;
         }
+        else
+        {
+            attack.interactable = true;
+        }
         
-        if (energy < 2 || pHealth <= pMaxHealth || selecting == true || playersTurn == false)
+        if (energy < 2 || pHealth == pMaxHealth || selecting == true || playersTurn == false)
         {
             heal.interactable = false;
+        }
+        else
+        {
+            heal.interactable=true;
         }
         
         if (energy < 2 || pDefence == 50 || selecting == true || playersTurn == false)
         {
             defend.interactable=false;
         }
-        
-        if(selecting == true || playersTurn == false)
+        else
+        {
+            defend.interactable = true;
+        }
+
+        if (selecting == true || playersTurn == false)
         {
             end.interactable = false;
         }
+
     }
 
     public void LevelUp(int LevelUp)
