@@ -10,7 +10,6 @@ public class loseScreen : MonoBehaviour
 
     public bool lost = false;
     public gameController gameController;
-    public jamesAudioScript jamesAudioScript;
 
     public void DeathScreen()
     {
@@ -18,8 +17,6 @@ public class loseScreen : MonoBehaviour
         gameOver.SetActive(true);
         gameOverText.text = "You have fallen in battle, and the goblins scurry back into the forest\nPress 'E' to accept defeat";
         lost = true;
-        jamesAudioScript.StopCombatMusic();
-        jamesAudioScript.PlayDeathSounds();
     }
 
 

@@ -14,7 +14,6 @@ public class gameController : MonoBehaviour
     public playerController playerController;
     public enemyGenerator enemyGenerator;
     public winScreen winScreen;
-    public jamesAudioScript jamesAudioScript;
 
     public Text turnCounter;
     public int turnCount;
@@ -47,8 +46,6 @@ public class gameController : MonoBehaviour
             WaveStart();
             turnCount++;
             waveCount++;
-            jamesAudioScript.StopAmbientMusic();
-            jamesAudioScript.PlayCombatMusic();
         }
 
     }

@@ -12,11 +12,7 @@ public class playerController : MonoBehaviour
     public selectEnemy selectEnemy;
     public loseScreen loseScreen;
     public winScreen winScreen;
-<<<<<<< Updated upstream
     public audioController audioController;
-=======
-    public jamesAudioScript jamesAudioScript;
->>>>>>> Stashed changes
 
     //Sliders
     public propertyMeter healthMeter;
@@ -98,11 +94,6 @@ public class playerController : MonoBehaviour
         {
             levelOptions.SetActive(true);
             playersTurn = false;
-            jamesAudioScript.PlayerLevelUpAudio();
-        }
-        if (pHealth < pMaxHealth * 0.25)
-        {
-            jamesAudioScript.PlayLowHelthAlert();
         }
 
         Buttons();
@@ -129,11 +120,7 @@ public class playerController : MonoBehaviour
         {
             selecting = true;
             energy -= 1;
-<<<<<<< Updated upstream
             energyCount.text = energy.ToString();
-=======
-            jamesAudioScript.PlayerSelectsAttackAudio();
->>>>>>> Stashed changes
 
 
         }
@@ -309,7 +296,6 @@ public class playerController : MonoBehaviour
             healthMeter.UpdateMeter(pHealth, pMaxHealth);
             levelOptions.SetActive(false);
             killCount = 0;
-            jamesAudioScript.PlayerLevelUpHealthAudio();
 
 
         }
@@ -321,7 +307,6 @@ public class playerController : MonoBehaviour
             levelOptions.SetActive(false);
             killCount = 0;
             playersTurn = true;
-            jamesAudioScript.PlayerLevelUpDamageAudio();
         }
         else if (LevelUp == 3)
         {
@@ -331,7 +316,6 @@ public class playerController : MonoBehaviour
             killCount = 0;
             playersTurn = true;
             energyCount.text = energy.ToString();
-            jamesAudioScript.PlayerLevelUpEnergyAudio();
         }
     }
 }

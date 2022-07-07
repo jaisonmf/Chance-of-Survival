@@ -14,7 +14,6 @@ public class winScreen : MonoBehaviour
     public enemyGenerator enemyGenerator;
     public playerController playerController;
     public enemyController enemyController;
-    public jamesAudioScript jamesAudioScript;
 
     public void Victory()
     {
@@ -25,8 +24,6 @@ public class winScreen : MonoBehaviour
         playerController.selecting = true;
         enemyGenerator.list.Clear();
         listClear = true;
-        jamesAudioScript.StopCombatMusic();
-        jamesAudioScript.PlayAmbientMusic();
     }
 
 
