@@ -25,7 +25,8 @@ public class playerController : MonoBehaviour
     public bool selecting = false;
     public GameObject selectMenu;
     public bool playersTurn;
-
+    public bool isCoroutineOn;
+    public bool wait;
 
     //Stats
     public int pMaxHealth = 100;
@@ -89,16 +90,18 @@ public class playerController : MonoBehaviour
 
         }
 
-        Buttons();
         if (killCount == 3)
         {
             levelOptions.SetActive(true);
             playersTurn = false;
         }
+
+        Buttons();
     }
     //Player turn starts, called by gameController & enemyController
     public void PlayerStart()
     {
+        wait = false;
         playersTurn = true;
         energyCount.text = energy.ToString();
         healthNum.text = pHealth.ToString() + "/" + pMaxHealth.ToString();
@@ -117,6 +120,7 @@ public class playerController : MonoBehaviour
         {
             selecting = true;
             energy -= 1;
+            energyCount.text = energy.ToString();
 
 
         }
@@ -170,7 +174,11 @@ public class playerController : MonoBehaviour
             enemy.GetComponent<enemyController>().ehealthMeter.UpdateMeter(enemy.GetComponent<enemyController>().eHealth, enemy.GetComponent<enemyController>().eMaxHealth);
         }
         // !!!!!!!!!!!!!!!FOR TIM: ALL OF THIS HAPPENS WHEN YOU SELECT AND HIT AN ENEMY!!!!!!!!!!!!!!!
-        enemy.GetComponent<enemyController>().hit = true;
+        selecting = false;
+        wait = true;
+
+        //THIS IS THE DELAY TO SEPARATE ATTACKING AND ENEMY HURT SOUND. PUT THE PLAYER ATTACK !!BEFORE!! THE COROUTINE. If it still overlaps the sound, adjust the delay time (0.5f) to something greater but not too great.
+        StartCoroutine(Delay(0.5f));
         enemy.GetComponent<enemyController>().damageOutput.SetActive(true);
         enemy.GetComponent<enemyController>().damageText.text = pDamage.ToString();
         enemy.GetComponent<enemyController>().damageAnim.Play("damage");
@@ -189,9 +197,8 @@ public class playerController : MonoBehaviour
 
             
         }
-
-        selecting = false;
-        PlayerStart();
+        
+       
 
         //Checking whether all enemies are alive, if all enemies have less than or equal to 0 health, player wins
         bool alive = false;
@@ -220,6 +227,21 @@ public class playerController : MonoBehaviour
         }
     }
 
+    IEnumerator Delay(float time)
+    {
+        if (isCoroutineOn)
+            yield break;
+
+        isCoroutineOn = true;
+
+        yield return new WaitForSeconds(time);
+        enemyController.enemy.GetComponent<enemyController>().hit = true;
+        
+        PlayerStart();
+
+        isCoroutineOn = false;
+    }
+
     //Damage calculation
     private void Damage()
     {
@@ -229,7 +251,7 @@ public class playerController : MonoBehaviour
     //Button Avaliability
     private void Buttons()
     {
-        if (energy == 0 || selecting == true || playersTurn == false)
+        if (energy == 0 || selecting == true || playersTurn == false || wait == true)
         {
             attack.interactable = false;
         }
@@ -238,7 +260,7 @@ public class playerController : MonoBehaviour
             attack.interactable = true;
         }
         
-        if (energy < 2 || pHealth == pMaxHealth || selecting == true || playersTurn == false)
+        if (energy < 2 || pHealth == pMaxHealth || selecting == true || playersTurn == false || wait == true)
         {
             heal.interactable = false;
         }
@@ -247,7 +269,7 @@ public class playerController : MonoBehaviour
             heal.interactable=true;
         }
         
-        if (energy < 2 || pDefence == 50 || selecting == true || playersTurn == false)
+        if (energy < 2 || pDefence == 50 || selecting == true || playersTurn == false || wait == true)
         {
             defend.interactable=false;
         }
@@ -256,7 +278,7 @@ public class playerController : MonoBehaviour
             defend.interactable = true;
         }
 
-        if (selecting == true || playersTurn == false)
+        if (selecting == true || playersTurn == false || wait == true)
         {
             end.interactable = false;
         }

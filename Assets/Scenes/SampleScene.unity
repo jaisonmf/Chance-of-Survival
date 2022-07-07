@@ -164,6 +164,7 @@ MonoBehaviour:
   playerController: {fileID: 592019421}
   winScreen: {fileID: 1758906742}
   loseScreen: {fileID: 1160639353}
+  audioController: {fileID: 0}
   enemy: {fileID: 2118078797595059730}
   enemyBars: {fileID: 2118078797595059730}
   healthbar: {fileID: 1367237998}
@@ -1503,6 +1504,7 @@ MonoBehaviour:
   selectEnemy: {fileID: 2121240035}
   loseScreen: {fileID: 1160639353}
   winScreen: {fileID: 1758906742}
+  audioController: {fileID: 0}
   healthMeter: {fileID: 2124227854}
   defenceMeter: {fileID: 852440031}
   menu: {fileID: 1278437413}
@@ -8221,6 +8223,7 @@ MonoBehaviour:
   playerController: {fileID: 592019421}
   winScreen: {fileID: 1758906742}
   loseScreen: {fileID: 1160639353}
+  audioController: {fileID: 0}
   enemy: {fileID: 5368971236970148027}
   enemyBars: {fileID: 5368971236970148027}
   healthbar: {fileID: 2109230266}
