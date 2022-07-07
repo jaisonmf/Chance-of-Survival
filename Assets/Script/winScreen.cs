@@ -22,7 +22,7 @@ public class winScreen : MonoBehaviour
         gameController.instructions.text = (""); 
         endGame = true;
         playerController.selecting = true;
-        enemyGenerator.list.Clear();
+        
         listClear = true;
     }
 
@@ -34,36 +34,44 @@ public class winScreen : MonoBehaviour
             Debug.Log("Application Closes");
             Application.Quit();
         }
-        if(Input.GetKeyDown(KeyCode.Q) && endGame == true && listClear == true)
+        if(Input.GetKeyDown(KeyCode.Q) && endGame == true)
         {
             //Next wave
-            gameController.WaveStart();
-            listClear = false;
-            endGame = false;
-            playerController.selecting = false;
-            win.SetActive(false);
+            for (int i = 0; i < enemyGenerator.list.Count; i++)
+            {
+                if (enemyGenerator.list[i].GetComponent<enemyController>().eHealth < 0)
+                {
+                    Destroy(enemyGenerator.list[i]);
+                }
+            }
+                enemyGenerator.list.Clear();
+                gameController.WaveStart();
+                listClear = false;
+                endGame = false;
+                playerController.selecting = false;
+                win.SetActive(false);
+
+
+
+                //Wave count + turn cout
+                gameController.waveCount++;
+                gameController.waveCounter.text = "Wave: " + gameController.waveCount;
+                gameController.turnCounter.text = "Turn: " + gameController.turnCount;
+                gameController.turnCount = 1;
+
+                //PlayerController
+                playerController.PlayerStart();
+                playerController.energy = playerController.maxEnergy;
+                playerController.pHealth += 15;
+                playerController.pDefence = 0;
+                playerController.healthNum.text = playerController.pHealth.ToString() + "/" + playerController.pMaxHealth.ToString();
+                playerController.healthMeter.UpdateMeter(playerController.pHealth, playerController.pMaxHealth);
+                playerController.defenceNum.text = playerController.pDefence.ToString() + "/" + playerController.pMaxDefence.ToString();
+                playerController.defenceMeter.UpdateMeter(playerController.pDefence, playerController.pMaxDefence);
+                playerController.energyCount.text = playerController.energy.ToString();
+
 
             
-
-            //Wave count + turn cout
-            gameController.waveCount++;
-            gameController.waveCounter.text = "Wave: " + gameController.waveCount;
-            gameController.turnCounter.text = "Turn: " + gameController.turnCount;
-            gameController.turnCount = 1;
-
-            //PlayerController
-            playerController.PlayerStart();
-            playerController.energy = playerController.maxEnergy;
-            playerController.pHealth += 15;
-            playerController.pDefence = 0;
-            playerController.healthNum.text = playerController.pHealth.ToString() + "/" + playerController.pMaxHealth.ToString();
-            playerController.healthMeter.UpdateMeter(playerController.pHealth, playerController.pMaxHealth);
-            playerController.defenceNum.text = playerController.pDefence.ToString() + "/" + playerController.pMaxDefence.ToString();
-            playerController.defenceMeter.UpdateMeter(playerController.pDefence, playerController.pMaxDefence);
-            playerController.energyCount.text = playerController.energy.ToString();
-
-
-
         }
     }
 

@@ -182,22 +182,35 @@ public class playerController : MonoBehaviour
         enemy.GetComponent<enemyController>().damageOutput.SetActive(true);
         enemy.GetComponent<enemyController>().damageText.text = pDamage.ToString();
         enemy.GetComponent<enemyController>().damageAnim.Play("damage");
-        
 
-        if (enemy.GetComponent<enemyController>().eHealth <= 0)
+        IEnumerator Delay(float time)
         {
-            
-            enemy.GetComponent<enemyController>().dead = true;
-            enemy.GetComponent<enemyController>().alive = false;
-            enemy.GetComponent<enemyController>().image.enabled = false;
-            enemy.GetComponent<enemyController>().healthbar.SetActive(false);
-            enemy.GetComponent<enemyController>().selectArrow.transform.position = new Vector2(0, -200);
-            energy += 1;
-            killCount++;
+            if (isCoroutineOn)
+                yield break;
 
+            isCoroutineOn = true;
+
+            yield return new WaitForSeconds(time);
             
+            if (enemy.GetComponent<enemyController>().eHealth <= 0)
+            {
+                enemy.GetComponent<enemyController>().dead = true;
+                enemy.GetComponent<enemyController>().alive = false;
+                enemy.GetComponent<enemyController>().image.enabled = false;
+                enemy.GetComponent<enemyController>().healthbar.SetActive(false);
+                enemy.GetComponent<enemyController>().selectArrow.transform.position = new Vector2(0, -200);
+                energy += 1;
+                killCount++;
+            }
+            else
+            {
+                enemy.GetComponent<enemyController>().hit = true;
+            }
+
+            PlayerStart();
+
+            isCoroutineOn = false;
         }
-        
        
 
         //Checking whether all enemies are alive, if all enemies have less than or equal to 0 health, player wins
@@ -218,7 +231,7 @@ public class playerController : MonoBehaviour
             {
                 if (enemyGenerator.list[i].GetComponent<enemyController>().eHealth < 0)
                 {
-                    Destroy(enemyGenerator.list[i]);
+                   // Destroy(enemyGenerator.list[i]);
                 }
             }
             selecting = true;
@@ -227,20 +240,7 @@ public class playerController : MonoBehaviour
         }
     }
 
-    IEnumerator Delay(float time)
-    {
-        if (isCoroutineOn)
-            yield break;
-
-        isCoroutineOn = true;
-
-        yield return new WaitForSeconds(time);
-        enemyController.enemy.GetComponent<enemyController>().hit = true;
-        
-        PlayerStart();
-
-        isCoroutineOn = false;
-    }
+   
 
     //Damage calculation
     private void Damage()
