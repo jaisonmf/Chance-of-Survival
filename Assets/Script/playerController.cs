@@ -13,6 +13,7 @@ public class playerController : MonoBehaviour
     public loseScreen loseScreen;
     public winScreen winScreen;
     public audioController audioController;
+    public jamesAudioScript jamesAudio;
 
     //Sliders
     public propertyMeter healthMeter;
@@ -31,8 +32,8 @@ public class playerController : MonoBehaviour
     //Stats
     public int pMaxHealth = 100;
     public int pHealth;    
-    private int pMaxDamage = 20;
-    private int pMinDamage = 10;
+    private int pMaxDamage = 100;
+    private int pMinDamage = 100;
     public int pDamage;
     public int pMaxDefence = 50;
     public int pDefence = 0;
@@ -89,14 +90,13 @@ public class playerController : MonoBehaviour
             loseScreen.DeathScreen();
 
         }
-
-        if (killCount == 3)
+        if (pHealth <= pMaxHealth * 0.25)
         {
-            levelOptions.SetActive(true);
-            playersTurn = false;
+            jamesAudio.PlayLowHelthAlert();
         }
 
-        Buttons();
+
+            Buttons();
     }
     //Player turn starts, called by gameController & enemyController
     public void PlayerStart()
@@ -121,6 +121,8 @@ public class playerController : MonoBehaviour
             selecting = true;
             energy -= 1;
             energyCount.text = energy.ToString();
+            jamesAudio.PlayerSelectsAttackAudio();
+            
 
 
         }
@@ -205,6 +207,13 @@ public class playerController : MonoBehaviour
             else
             {
                 enemy.GetComponent<enemyController>().hit = true;
+            }
+
+            if (killCount == 3)
+            {
+                levelOptions.SetActive(true);
+                playersTurn = false;
+                jamesAudio.PlayerLevelUpAudio();
             }
 
             PlayerStart();
@@ -296,6 +305,7 @@ public class playerController : MonoBehaviour
             healthMeter.UpdateMeter(pHealth, pMaxHealth);
             levelOptions.SetActive(false);
             killCount = 0;
+            jamesAudio.PlayerLevelUpHealthAudio();
 
 
         }
@@ -307,6 +317,7 @@ public class playerController : MonoBehaviour
             levelOptions.SetActive(false);
             killCount = 0;
             playersTurn = true;
+            jamesAudio.PlayerLevelUpDamageAudio();
         }
         else if (LevelUp == 3)
         {
@@ -316,6 +327,7 @@ public class playerController : MonoBehaviour
             killCount = 0;
             playersTurn = true;
             energyCount.text = energy.ToString();
+            jamesAudio.PlayerLevelUpEnergyAudio();
         }
     }
 }
