@@ -8,7 +8,7 @@ public class winScreen : MonoBehaviour
     public GameObject win;
     public Text winText;
     public bool endGame;
-    private bool listClear;
+
 
     public gameController gameController;
     public enemyGenerator enemyGenerator;
