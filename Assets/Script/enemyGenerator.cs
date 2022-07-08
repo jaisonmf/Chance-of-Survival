@@ -12,6 +12,8 @@ public class enemyGenerator : MonoBehaviour
     public ogre ogreStats;
 
     public int amount;
+    public int maxSpawn = 4;
+    public int minSpawn = 1;
     public GameObject enemyType;
     
     public GameObject goblin;
@@ -37,7 +39,16 @@ public class enemyGenerator : MonoBehaviour
     {
         goblinStats.Goblin();
         ogreStats.Ogre();
-        amount = Random.Range(1, 10);
+        for (int i = 0; i < gameController.waveCount; i++)
+        {
+            maxSpawn++;
+        }
+        amount = Random.Range(minSpawn, maxSpawn);
+
+        if(maxSpawn > 11)
+        {
+            maxSpawn = 10;
+        }
         {
             for (int i = 0; i < amount; i++)
             {

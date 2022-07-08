@@ -34,7 +34,7 @@ public class playerController : MonoBehaviour
     //Stats
     public int pMaxHealth = 100;
     public int pHealth;    
-    private int pMaxDamage = 20;
+    private int pMaxDamage = 40;
     private int pMinDamage = 10;
     public int pDamage;
     public int pMaxDefence = 50;

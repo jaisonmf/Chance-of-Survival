@@ -1,3 +1,3 @@
 ﻿Name,maxHealth,minHealth,maxDamage,minDamage
-goblin,75,25,10,0
+goblin,50,25,10,0
 ogre,100,75,15,5
