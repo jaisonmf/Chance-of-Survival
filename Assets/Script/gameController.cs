@@ -47,8 +47,8 @@ public class gameController : MonoBehaviour
             WaveStart();
             turnCount++;
             waveCount++;
-          //  jamesAudioScript.StopAmbientMusic();
-           // jamesAudioScript.PlayCombatMusic();
+           jamesAudioScript.StopAmbientMusic();
+           jamesAudioScript.PlayCombatMusic();
         }
 
     }
@@ -59,8 +59,8 @@ public class gameController : MonoBehaviour
         gameStart = true;
         generated = true;
         PlayerTurn();
-       // jamesAudioScript.StopAmbientMusic();
-        //jamesAudioScript.PlayCombatMusic();
+        jamesAudioScript.StopAmbientMusic();
+        jamesAudioScript.PlayCombatMusic();
 
     }
     public void PlayerTurn()

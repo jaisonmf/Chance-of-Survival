@@ -60,7 +60,7 @@ public class jamesAudioScript : MonoBehaviour
     public void PlayerLevelUpAudio()
     {
         levelUpGeneric.Play();
-        Debug.Log("Ive been fired");
+        //Debug.Log("Ive been fired");
     }
     public void PlayerLevelUpHealthAudio()
     {

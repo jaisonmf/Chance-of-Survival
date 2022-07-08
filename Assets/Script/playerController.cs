@@ -28,6 +28,8 @@ public class playerController : MonoBehaviour
     public bool playersTurn;
     public bool isCoroutineOn;
     public bool wait;
+    public bool belowHalfHealth = false;
+    public bool aboveHalfHealth = true;
 
     //Stats
     public int pMaxHealth = 100;
@@ -90,13 +92,22 @@ public class playerController : MonoBehaviour
             loseScreen.DeathScreen();
 
         }
-       /* if (pHealth <= pMaxHealth * 0.25)
+        if (pHealth >= pMaxHealth * 0.5 & !aboveHalfHealth)
+        {
+            aboveHalfHealth = true;
+        }
+        if (pHealth <= pMaxHealth * 0.5 & aboveHalfHealth)
+        {
+            belowHalfHealth = true;
+            aboveHalfHealth = false;
+        }
+        if (belowHalfHealth)
         {
             jamesAudio.PlayLowHelthAlert();
+            belowHalfHealth = false;
         }
-       */
 
-            Buttons();
+        Buttons();
     }
     //Player turn starts, called by gameController & enemyController
     public void PlayerStart()
@@ -121,7 +132,7 @@ public class playerController : MonoBehaviour
             selecting = true;
             energy -= 1;
             energyCount.text = energy.ToString();
-           // jamesAudio.PlayerSelectsAttackAudio();
+            jamesAudio.PlayerSelectsAttackAudio();
             
 
 
