@@ -30,11 +30,12 @@ public class playerController : MonoBehaviour
     public bool wait;
     public bool belowHalfHealth = false;
     public bool aboveHalfHealth = true;
+    public bool levelling;
 
     //Stats
     public int pMaxHealth = 100;
     public int pHealth;    
-    private int pMaxDamage = 40;
+    private int pMaxDamage = 20;
     private int pMinDamage = 10;
     public int pDamage;
     public int pMaxDefence = 50;
@@ -112,15 +113,19 @@ public class playerController : MonoBehaviour
     //Player turn starts, called by gameController & enemyController
     public void PlayerStart()
     {
-        wait = false;
-        playersTurn = true;
-        energyCount.text = energy.ToString();
-        healthNum.text = pHealth.ToString() + "/" + pMaxHealth.ToString();
-        healthMeter.UpdateMeter(pHealth, pMaxHealth);
-        defenceNum.text = pDefence.ToString() + "/" + pMaxDefence.ToString();
-        defenceMeter.UpdateMeter(pDefence, pMaxDefence);
+        if (levelling == false)
+        {
+            wait = false;
+            playersTurn = true;
+            energyCount.text = energy.ToString();
+            healthNum.text = pHealth.ToString() + "/" + pMaxHealth.ToString();
+            healthMeter.UpdateMeter(pHealth, pMaxHealth);
+            defenceNum.text = pDefence.ToString() + "/" + pMaxDefence.ToString();
+            defenceMeter.UpdateMeter(pDefence, pMaxDefence);
 
-        end.interactable = true;
+            end.interactable = true;
+        }
+      
     }
 
     //Player turn
@@ -226,6 +231,7 @@ public class playerController : MonoBehaviour
                 playersTurn = false;
                 jamesAudio.PlayerLevelUpAudio();
                 wait = true;
+                levelling = true;
             }
 
             PlayerStart();
@@ -272,7 +278,7 @@ public class playerController : MonoBehaviour
     //Button Avaliability
     private void Buttons()
     {
-        if (energy == 0 || selecting == true || playersTurn == false || wait == true)
+        if (energy == 0 || selecting == true || playersTurn == false || wait == true || levelling == true)
         {
             attack.interactable = false;
         }
@@ -281,7 +287,7 @@ public class playerController : MonoBehaviour
             attack.interactable = true;
         }
         
-        if (energy < 2 || pHealth == pMaxHealth || selecting == true || playersTurn == false || wait == true)
+        if (energy < 2 || pHealth == pMaxHealth || selecting == true || playersTurn == false || wait == true || levelling == true)
         {
             heal.interactable = false;
         }
@@ -290,7 +296,7 @@ public class playerController : MonoBehaviour
             heal.interactable=true;
         }
         
-        if (energy < 2 || pDefence == 50 || selecting == true || playersTurn == false || wait == true)
+        if (energy < 2 || pDefence == 50 || selecting == true || playersTurn == false || wait == true || levelling == true)
         {
             defend.interactable=false;
         }
@@ -299,7 +305,7 @@ public class playerController : MonoBehaviour
             defend.interactable = true;
         }
 
-        if (selecting == true || playersTurn == false || wait == true)
+        if (selecting == true || playersTurn == false || wait == true || levelling == true)
         {
             end.interactable = false;
         }
@@ -318,7 +324,8 @@ public class playerController : MonoBehaviour
             levelOptions.SetActive(false);
             killCount = 0;
             jamesAudio.PlayerLevelUpHealthAudio();
-           // wait = true;
+            levelling = false;
+            wait = false;
 
         }
         else if (LevelUp == 2)
@@ -330,7 +337,8 @@ public class playerController : MonoBehaviour
             killCount = 0;
             playersTurn = true;
             jamesAudio.PlayerLevelUpDamageAudio();
-            //wait = true;
+            levelling = false;
+            wait = false;
         }
         else if (LevelUp == 3)
         {
@@ -341,7 +349,8 @@ public class playerController : MonoBehaviour
             playersTurn = true;
             energyCount.text = energy.ToString();
             jamesAudio.PlayerLevelUpEnergyAudio();
-            //wait = true;
+            levelling = false;
+            wait = false;
         }
     }
 }
