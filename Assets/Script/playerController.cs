@@ -32,8 +32,8 @@ public class playerController : MonoBehaviour
     //Stats
     public int pMaxHealth = 100;
     public int pHealth;    
-    private int pMaxDamage = 100;
-    private int pMinDamage = 100;
+    private int pMaxDamage = 20;
+    private int pMinDamage = 10;
     public int pDamage;
     public int pMaxDefence = 50;
     public int pDefence = 0;
@@ -90,11 +90,11 @@ public class playerController : MonoBehaviour
             loseScreen.DeathScreen();
 
         }
-        if (pHealth <= pMaxHealth * 0.25)
+       /* if (pHealth <= pMaxHealth * 0.25)
         {
             jamesAudio.PlayLowHelthAlert();
         }
-
+       */
 
             Buttons();
     }
@@ -121,7 +121,7 @@ public class playerController : MonoBehaviour
             selecting = true;
             energy -= 1;
             energyCount.text = energy.ToString();
-            jamesAudio.PlayerSelectsAttackAudio();
+           // jamesAudio.PlayerSelectsAttackAudio();
             
 
 
@@ -149,10 +149,11 @@ public class playerController : MonoBehaviour
         //End Turn, player can end turn whenever
         if (ButtonPress == 4)
         {
-            // !!!!!!!!!!!!!!!FOR TIM: ALL OF THIS HAPPENS WHEN YOU END TURN!!!!!!!!!!!!!!!
+            audioController.PlayerEndSound();
             gameControl.EnemyTurn();
             gameControl.turnCounter.text = "Turn: " + gameControl.turnCount;
             gameControl.turnCount += 1;
+            wait = true;
 
         }
     }
@@ -175,11 +176,10 @@ public class playerController : MonoBehaviour
             enemy.GetComponent<enemyController>().edefenceMeter.UpdateMeter(enemy.GetComponent<enemyController>().eDefence, enemy.GetComponent<enemyController>().eMaxDefence);
             enemy.GetComponent<enemyController>().ehealthMeter.UpdateMeter(enemy.GetComponent<enemyController>().eHealth, enemy.GetComponent<enemyController>().eMaxHealth);
         }
-        // !!!!!!!!!!!!!!!FOR TIM: ALL OF THIS HAPPENS WHEN YOU SELECT AND HIT AN ENEMY!!!!!!!!!!!!!!!
         selecting = false;
         wait = true;
+        audioController.PlayerAttackingSound();
 
-        //THIS IS THE DELAY TO SEPARATE ATTACKING AND ENEMY HURT SOUND. PUT THE PLAYER ATTACK !!BEFORE!! THE COROUTINE. If it still overlaps the sound, adjust the delay time (0.5f) to something greater but not too great.
         StartCoroutine(Delay(0.5f));
         enemy.GetComponent<enemyController>().damageOutput.SetActive(true);
         enemy.GetComponent<enemyController>().damageText.text = pDamage.ToString();

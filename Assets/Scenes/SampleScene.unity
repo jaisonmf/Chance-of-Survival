@@ -612,6 +612,7 @@ MonoBehaviour:
   playerController: {fileID: 592019421}
   enemyGenerator: {fileID: 400023913}
   winScreen: {fileID: 1758906742}
+  jamesAudioScript: {fileID: 0}
   turnCounter: {fileID: 1813033254}
   turnCount: 0
   waveCount: 0
@@ -1478,6 +1479,7 @@ GameObject:
   - component: {fileID: 592019422}
   - component: {fileID: 592019421}
   - component: {fileID: 592019424}
+  - component: {fileID: 592019423}
   m_Layer: 0
   m_Name: playerController
   m_TagString: Untagged
@@ -1504,6 +1506,7 @@ MonoBehaviour:
   loseScreen: {fileID: 1160639353}
   winScreen: {fileID: 1758906742}
   audioController: {fileID: 0}
+  jamesAudio: {fileID: 0}
   healthMeter: {fileID: 2124227854}
   defenceMeter: {fileID: 852440031}
   menu: {fileID: 1278437413}
@@ -1546,6 +1549,40 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &592019423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592019420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbe4f98850ba74e4296b4d18ec2740ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hurtArray:
+  - {fileID: 8300000, guid: f59c62078e764a94d9a433eb6b43f3b5, type: 3}
+  - {fileID: 8300000, guid: 599181124a612844d8556937fc4304e5, type: 3}
+  - {fileID: 8300000, guid: 331f2e8951dd1ca4b94fe34158415e70, type: 3}
+  - {fileID: 8300000, guid: 08e4587bc7603cc4e9031bb2a6d282a4, type: 3}
+  dyingArray: []
+  defenceHitArray:
+  - {fileID: 8300000, guid: 456e3f0f18d66554ebec3d404cfc9270, type: 3}
+  - {fileID: 8300000, guid: d3b962fdbea5f994788271042f4bf8d5, type: 3}
+  - {fileID: 8300000, guid: 23c8bcaf784463f4e86fb95220fa31c9, type: 3}
+  - {fileID: 8300000, guid: dbd07c5cb1a1c3346a92c160555b72d9, type: 3}
+  playerAttackingArray:
+  - {fileID: 8300000, guid: 080155b9772fc91419c96da035a683e7, type: 3}
+  - {fileID: 8300000, guid: f6e8779e393d8714d9d8b8ea23ebe8b1, type: 3}
+  - {fileID: 8300000, guid: b4a7033c5d5e82f4798e6b51f73ef44d, type: 3}
+  playerEndArray:
+  - {fileID: 8300000, guid: 91663ed681bdbbb4ab5eb445591d25db, type: 3}
+  - {fileID: 8300000, guid: 561fdd243a419664c94f63cedc12e766, type: 3}
+  - {fileID: 8300000, guid: 8cdcda41da43dfb4b8dde89e7ee96227, type: 3}
+  - {fileID: 8300000, guid: 6bec788dd44af08499dfb3e775accf0f, type: 3}
+  - {fileID: 8300000, guid: a1612212b7b90ba4ea815ffe005fc955, type: 3}
+  playedSound: {fileID: 0}
 --- !u!82 &592019424
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2177,6 +2214,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 723811818}
   m_CullTransparentMesh: 1
+--- !u!1 &736295281
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 736295282}
+  m_Layer: 0
+  m_Name: Sound Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &736295282
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736295281}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 684.805, y: 489.26996, z: -1407.6703}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &762712078
 GameObject:
   m_ObjectHideFlags: 0
@@ -3578,6 +3645,7 @@ MonoBehaviour:
   gameOver: {fileID: 1174785391}
   lost: 0
   gameController: {fileID: 245226853}
+  jamesAudio: {fileID: 0}
 --- !u!4 &1160639354
 Transform:
   m_ObjectHideFlags: 0
@@ -5367,6 +5435,7 @@ MonoBehaviour:
   enemyGenerator: {fileID: 400023913}
   playerController: {fileID: 592019421}
   enemyController: {fileID: 6177071861860799988}
+  jamesAudioScript: {fileID: 0}
 --- !u!4 &1758906743
 Transform:
   m_ObjectHideFlags: 0

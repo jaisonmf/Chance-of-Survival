@@ -67,6 +67,7 @@ public class ogre : MonoBehaviour
             playerController.pDefence -= enemyController.enemy.GetComponent<enemyController>().eDamage;
             playerController.defenceMeter.UpdateMeter(playerController.pDefence, playerController.pMaxDefence);
             playerController.defenceNum.text = playerController.pDefence.ToString() + "/" + playerController.pMaxDefence.ToString();
+            playerController.audioController.DefenceHit();
         }
         //!!!!!!!!!!!!!!!FOR TIM: ALL OF THIS HAPPENS WHEN YOU AN ENEMY HITS YOU WHILE YOU DO NOT HAVE DEFENCE!!!!!!!!!!!!!!!
         //breaks defence + goes into health. Also if player has no defence
@@ -78,6 +79,8 @@ public class ogre : MonoBehaviour
             playerController.healthMeter.UpdateMeter(playerController.pHealth, playerController.pMaxHealth);
             playerController.healthNum.text = playerController.pHealth.ToString() + "/" + playerController.pMaxHealth.ToString();
             playerController.defenceNum.text = playerController.pDefence.ToString() + "/" + playerController.pMaxDefence.ToString();
+            playerController.audioController.Hurt();
+
         }
 
         go.GetComponent<enemyController>().attacking = false;
