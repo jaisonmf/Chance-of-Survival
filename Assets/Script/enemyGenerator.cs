@@ -49,6 +49,10 @@ public class enemyGenerator : MonoBehaviour
         {
             maxSpawn = 10;
         }
+        if(amount > 11)
+        {
+            amount = 10;
+        }
         {
             for (int i = 0; i < amount; i++)
             {

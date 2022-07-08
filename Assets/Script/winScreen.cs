@@ -23,8 +23,6 @@ public class winScreen : MonoBehaviour
         gameController.instructions.text = (""); 
         endGame = true;
         playerController.selecting = true;
-
-        listClear = true;
         jamesAudioScript.StopCombatMusic();
         jamesAudioScript.PlayAmbientMusic();
     }
@@ -49,7 +47,6 @@ public class winScreen : MonoBehaviour
             }
                 enemyGenerator.list.Clear();
                 gameController.WaveStart();
-                listClear = false;
                 endGame = false;
                 playerController.selecting = false;
                 win.SetActive(false);

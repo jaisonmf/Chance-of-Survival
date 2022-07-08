@@ -225,6 +225,7 @@ public class playerController : MonoBehaviour
                 levelOptions.SetActive(true);
                 playersTurn = false;
                 jamesAudio.PlayerLevelUpAudio();
+                wait = true;
             }
 
             PlayerStart();
@@ -317,7 +318,7 @@ public class playerController : MonoBehaviour
             levelOptions.SetActive(false);
             killCount = 0;
             jamesAudio.PlayerLevelUpHealthAudio();
-
+           // wait = true;
 
         }
         else if (LevelUp == 2)
@@ -329,6 +330,7 @@ public class playerController : MonoBehaviour
             killCount = 0;
             playersTurn = true;
             jamesAudio.PlayerLevelUpDamageAudio();
+            //wait = true;
         }
         else if (LevelUp == 3)
         {
@@ -339,6 +341,7 @@ public class playerController : MonoBehaviour
             playersTurn = true;
             energyCount.text = energy.ToString();
             jamesAudio.PlayerLevelUpEnergyAudio();
+            //wait = true;
         }
     }
 }
