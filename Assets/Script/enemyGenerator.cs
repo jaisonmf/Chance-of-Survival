@@ -8,55 +8,100 @@ public class enemyGenerator : MonoBehaviour
     public gameController gameController;
     public enemyController enemyController;
     public CSVReader csvReader;
-    public goblin goblinStats;
-    public ogre ogreStats;
+    public CSVReader bossCsvReader;
 
     public int amount;
     public int maxSpawn = 4;
     public int minSpawn = 1;
     public GameObject enemyType;
     
-    public GameObject goblin;
-    public GameObject ogre;
+
     public GameObject go;
     public GameObject Parent;
+
+    //Enemies
+    public GameObject goblin;
+    public GameObject ogre;
+
+    //Boss
+    public GameObject orc;
+    public GameObject goblinKing;
+
+
+    //Stats
+    public goblin goblinStats;
+    public ogre ogreStats;
+    public orc orcStats;
+    public goblinKing goblinKingStats;
 
     //Number of enemy
     public List<GameObject> list = new List<GameObject>();
     //Enemy Type
     public List<GameObject> Type = new List<GameObject>();
-
+    //Boss Type
+    public List<GameObject> Boss = new List<GameObject>();
 
     private void Start()
     {
         Type[0] = goblin;
         
         Type[1] = ogre;
-        
+
+        Boss[0] = orc;
+
+        Boss[1] = goblinKing;
+
     }
 
     public void EnemyGeneration()
     {
         goblinStats.Goblin();
         ogreStats.Ogre();
+        orcStats.Orc();
+        goblinKingStats.GoblinKing();
+
         for (int i = 0; i < gameController.waveCount; i++)
         {
             maxSpawn++;
         }
         amount = Random.Range(minSpawn, maxSpawn);
 
-        if(maxSpawn > 11)
+        if (maxSpawn > 11)
         {
             maxSpawn = 10;
         }
-        if(amount > 11)
+        if (amount >= 11)
         {
             amount = 10;
         }
+
+        if (gameController.waveCount != 10)
         {
+            {
+                for (int i = 0; i < amount; i++)
+                {
+                    enemyType = Type[Random.Range(0, Type.Count)];
+
+                    {
+                        go = Instantiate(enemyType, new Vector2((Screen.width / (amount + 1)) * (i + 1), -15), Quaternion.identity);
+                        go.transform.SetParent(Parent.transform, false);
+                        list.Add(go);
+                        EnemyStats();
+
+                        go.GetComponent<enemyController>().count = i;
+                        enemyController.alive = true;
+                    }
+
+                }
+            }
+        }
+
+        if (gameController.waveCount == 10)
+        {
+            amount = 1;
             for (int i = 0; i < amount; i++)
             {
-                enemyType = Type[Random.Range(0, Type.Count)];
+                enemyType = Boss[Random.Range(0, Type.Count)];
 
                 {
                     go = Instantiate(enemyType, new Vector2((Screen.width / (amount + 1)) * (i + 1), -15), Quaternion.identity);
@@ -71,7 +116,6 @@ public class enemyGenerator : MonoBehaviour
             }
         }
     }
-
 
 
     public void EnemyStats()

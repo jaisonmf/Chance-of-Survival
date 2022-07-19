@@ -35,8 +35,8 @@ public class playerController : MonoBehaviour
     //Stats
     public int pMaxHealth = 100;
     public int pHealth;    
-    private int pMaxDamage = 20;
-    private int pMinDamage = 10;
+    private int pMaxDamage = 200;
+    private int pMinDamage = 100;
     public int pDamage;
     public int pMaxDefence = 50;
     public int pDefence = 0;
@@ -59,6 +59,9 @@ public class playerController : MonoBehaviour
     //Level Up
     public int killCount;
     public GameObject levelOptions;
+
+    //Status Effects
+    public bool slow;
 
     private void Start()
     {

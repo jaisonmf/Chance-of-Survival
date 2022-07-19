@@ -24,15 +24,12 @@ public class gameController : MonoBehaviour
     public Text instructions;
 
 
-    private bool isCoroutineOn;
-
-
     private void Start()
     {
         enemyTurn = false;
         turnCount = 0;
         turnCounter.text = "Turn: " + turnCount;
-        waveCount = 0;
+        waveCount = 9;
         waveCounter.text = "Wave: " + waveCount;
         instructions.text = ("You have been attacked!\nPress 'E' to continue");
         playerController.healthNum.text = playerController.pHealth.ToString() + "/" + playerController.pMaxHealth.ToString();
