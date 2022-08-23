@@ -92,9 +92,9 @@ public class bossController : MonoBehaviour
         //Updates player health/defence bars, resets player energy to 5, starts the player turn
         ehealthMeter.UpdateMeter(eHealth, eMaxHealth);
         edefenceMeter.UpdateMeter(eDefence, eMaxDefence);
-        gameController.PlayerTurn();
         playerController.energy = playerController.maxEnergy;
         playerController.energyCount.text = playerController.energy.ToString();
+        gameController.PlayerTurn();
         isCoroutineOn = false;
     }
 

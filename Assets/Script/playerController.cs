@@ -35,14 +35,16 @@ public class playerController : MonoBehaviour
     //Stats
     public int pMaxHealth = 100;
     public int pHealth;    
-    private int pMaxDamage = 200;
-    private int pMinDamage = 100;
+    private int pMaxDamage = 20;
+    private int pMinDamage = 10;
     public int pDamage;
     public int pMaxDefence = 50;
     public int pDefence = 0;
     public int energy;
     public Text energyCount;
     public int maxEnergy = 5;
+    public int gold;
+    public Text goldAmount;
 
     //Buttons
     public Button attack;
@@ -113,21 +115,33 @@ public class playerController : MonoBehaviour
 
         Buttons();
     }
+
+
     //Player turn starts, called by gameController & enemyController
     public void PlayerStart()
     {
+        goldAmount.text = gold.ToString();
         if (levelling == false)
         {
             wait = false;
             playersTurn = true;
-            energyCount.text = energy.ToString();
             healthNum.text = pHealth.ToString() + "/" + pMaxHealth.ToString();
             healthMeter.UpdateMeter(pHealth, pMaxHealth);
             defenceNum.text = pDefence.ToString() + "/" + pMaxDefence.ToString();
             defenceMeter.UpdateMeter(pDefence, pMaxDefence);
+            
+            if (slow == true)
+            {
+                energy -= 1;
+                energyCount.text = energy.ToString();
+                slow = false;
+                Debug.Log("This doesnt fucking work!!!!");
+            }
+            energyCount.text = energy.ToString();
 
             end.interactable = true;
         }
+        
       
     }
 
@@ -220,6 +234,8 @@ public class playerController : MonoBehaviour
                 enemy.GetComponent<enemyController>().image.enabled = false;
                 enemy.GetComponent<enemyController>().healthbar.SetActive(false);
                 enemy.GetComponent<enemyController>().selectArrow.transform.position = new Vector2(0, -200);
+                gold += enemy.GetComponent<enemyController>().goldDropped;
+                goldAmount.text = gold.ToString();
                 energy += 1;
                 killCount++;
             }

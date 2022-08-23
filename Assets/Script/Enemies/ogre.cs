@@ -23,6 +23,9 @@ public class ogre : MonoBehaviour
         go.GetComponent<enemyController>().eMaxDamage = cSVReader.myEnemyList.enemy[1].maxDamage;
         go.GetComponent<enemyController>().eMinDamage = cSVReader.myEnemyList.enemy[1].minDamage;
 
+        go.GetComponent<enemyController>().minGold = cSVReader.myEnemyList.enemy[1].minGold;
+        go.GetComponent<enemyController>().maxGold = cSVReader.myEnemyList.enemy[1].maxGold;
+
 
     }
 
@@ -41,7 +44,6 @@ public class ogre : MonoBehaviour
             Special();
         }
 
-        //!!!!!!!!!! FOR TIM: THIS IS AN EXAMPLE OF HOW SOUND IS PLAYED WHEN ENEMIES ARE HIT AND WHEN THEY DIE. Bools shouldnt be necessary, just call the script and function !!!!!!!!!!!!!!!!
         if (go.GetComponent<enemyController>().hit == true)
         {
             audioController.Hurt();
@@ -60,7 +62,6 @@ public class ogre : MonoBehaviour
     public void Attack()
     {
         enemyController.enemy.GetComponent<enemyController>().Damage();
-        //!!!!!!!!!!!!!!!FOR TIM: ALL OF THIS HAPPENS WHEN YOU AN ENEMY HITS YOU WHILE YOU HAVE DEFENCE!!!!!!!!!!!!!!!
         //not enough to break defend
         if (enemyController.enemy.GetComponent<enemyController>().eDamage - playerController.pDefence <= playerController.pDefence)
         {
@@ -69,7 +70,6 @@ public class ogre : MonoBehaviour
             playerController.defenceNum.text = playerController.pDefence.ToString() + "/" + playerController.pMaxDefence.ToString();
             playerController.audioController.DefenceHit();
         }
-        //!!!!!!!!!!!!!!!FOR TIM: ALL OF THIS HAPPENS WHEN YOU AN ENEMY HITS YOU WHILE YOU DO NOT HAVE DEFENCE!!!!!!!!!!!!!!!
         //breaks defence + goes into health. Also if player has no defence
         else
         {

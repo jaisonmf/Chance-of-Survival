@@ -46,6 +46,9 @@ public class enemyController : MonoBehaviour
     public int Action;
     public int eDamage;
     public bool alive = true;
+    public int goldDropped;
+    public int minGold;
+    public int maxGold;
 
     public bool attacking = false;
     public bool defending = false;
@@ -114,9 +117,8 @@ public class enemyController : MonoBehaviour
         //Updates player health/defence bars, resets player energy to 5, starts the player turn
         ehealthMeter.UpdateMeter(eHealth, eMaxHealth);
         edefenceMeter.UpdateMeter(eDefence, eMaxDefence);
-        gameController.PlayerTurn();
         playerController.energy = playerController.maxEnergy;
-        playerController.energyCount.text = playerController.energy.ToString();
+        gameController.PlayerTurn();
         isCoroutineOn = false;
     }
 

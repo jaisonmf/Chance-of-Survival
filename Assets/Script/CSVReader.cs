@@ -16,6 +16,8 @@ public class CSVReader : MonoBehaviour
         public int minHealth;
         public int maxDamage;
         public int minDamage;
+        public int maxGold;
+        public int minGold;
     }
 
     [System.Serializable]
@@ -36,17 +38,19 @@ public class CSVReader : MonoBehaviour
     {
         string[] data = textAssetData.text.Split(new string[] { ",", "\n" }, StringSplitOptions.None);
 
-        int tableSize = data.Length / 5 - 1;
+        int tableSize = data.Length / 7 - 1;
         myEnemyList.enemy = new Enemy[tableSize];
 
         for(int i = 0; i < tableSize; i++)
         {
             myEnemyList.enemy[i] = new Enemy();
             myEnemyList.enemy[i].name = data[5 * (i + 1)];
-            myEnemyList.enemy[i].maxHealth = int.Parse(data[5 * (i + 1) + 1]);
-            myEnemyList.enemy[i].minHealth = int.Parse(data[5 * (i + 1) + 2]);
-            myEnemyList.enemy[i].maxDamage = int.Parse(data[5 * (i + 1) + 3]);
-            myEnemyList.enemy[i].minDamage = int.Parse(data[5 * (i + 1) + 4]);
+            myEnemyList.enemy[i].maxHealth = int.Parse(data[7 * (i + 1) + 1]);
+            myEnemyList.enemy[i].minHealth = int.Parse(data[7 * (i + 1) + 2]);
+            myEnemyList.enemy[i].maxDamage = int.Parse(data[7 * (i + 1) + 3]);
+            myEnemyList.enemy[i].minDamage = int.Parse(data[7 * (i + 1) + 4]);
+            myEnemyList.enemy[i].maxGold = int.Parse(data[7 * (i + 1) + 5]);
+            myEnemyList.enemy[i].minGold = int.Parse(data[7 * (i + 1) + 6]);
         }
     }
 

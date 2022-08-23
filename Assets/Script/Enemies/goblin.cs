@@ -23,7 +23,10 @@ public class goblin : MonoBehaviour
         go.GetComponent<enemyController>().eMaxDamage = cSVReader.myEnemyList.enemy[0].maxDamage;
         go.GetComponent<enemyController>().eMinDamage = cSVReader.myEnemyList.enemy[0].minDamage;
 
-        
+        go.GetComponent<enemyController>().minGold = cSVReader.myEnemyList.enemy[0].minGold;
+        go.GetComponent<enemyController>().maxGold = cSVReader.myEnemyList.enemy[0].maxGold;
+
+
     }
 
     private void Update()

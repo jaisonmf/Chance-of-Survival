@@ -68,6 +68,7 @@ public class orc : MonoBehaviour
     {
         Attack();
         playerController.slow = true;
+        Debug.Log("woahhhhhhhhj");
         go.GetComponent<enemyController>().special = false;
     }
 

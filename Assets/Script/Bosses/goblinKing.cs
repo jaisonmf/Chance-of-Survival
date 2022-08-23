@@ -66,18 +66,18 @@ public class goblinKing : MonoBehaviour
     }
     void Special()
     {
-        enemyGenerator.amount = Random.Range(1, 2);
+        enemyGenerator.amount = Random.Range(2, 3);
         for (int i = 0; i < enemyGenerator.amount; i++)
         {
             enemyGenerator.enemyType = enemyGenerator.Type[0];
 
             {
-                enemyGenerator.go = Instantiate(enemyGenerator.enemyType, new Vector2((Screen.width / (enemyGenerator.amount + 2)) * (i + 1), -25), Quaternion.identity);
+                enemyGenerator.go = Instantiate(enemyGenerator.enemyType, new Vector2((Screen.width / (enemyGenerator.go.GetComponent<enemyController>().count + 4)) * (i + 2), -25), Quaternion.identity);
                 enemyGenerator.go.transform.SetParent(enemyGenerator.Parent.transform, false);
                 enemyGenerator.list.Add(enemyGenerator.go);
                 enemyGenerator.EnemyStats();
 
-                enemyGenerator.go.GetComponent<enemyController>().count = i;
+                enemyGenerator.go.GetComponent<enemyController>().count += 1;
                 enemyController.alive = true;
             }
         }

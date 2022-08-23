@@ -29,7 +29,7 @@ public class gameController : MonoBehaviour
         enemyTurn = false;
         turnCount = 0;
         turnCounter.text = "Turn: " + turnCount;
-        waveCount = 9;
+        waveCount = 0;
         waveCounter.text = "Wave: " + waveCount;
         instructions.text = ("You have been attacked!\nPress 'E' to continue");
         playerController.healthNum.text = playerController.pHealth.ToString() + "/" + playerController.pMaxHealth.ToString();
@@ -46,7 +46,7 @@ public class gameController : MonoBehaviour
             waveCount++;
            jamesAudioScript.StopAmbientMusic();
            jamesAudioScript.PlayCombatMusic();
-            waveCount = 1;
+            waveCount = 10;
             waveCounter.text = "Wave: " + waveCount;
         }
 

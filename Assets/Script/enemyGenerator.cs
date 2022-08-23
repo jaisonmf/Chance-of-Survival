@@ -101,7 +101,7 @@ public class enemyGenerator : MonoBehaviour
             amount = 1;
             for (int i = 0; i < amount; i++)
             {
-                enemyType = Boss[Random.Range(0, Type.Count)];
+                enemyType = Boss[0];
 
                 {
                     go = Instantiate(enemyType, new Vector2((Screen.width / (amount + 1)) * (i + 1), -15), Quaternion.identity);
@@ -121,9 +121,10 @@ public class enemyGenerator : MonoBehaviour
     public void EnemyStats()
     {
         //Calculates states
-            go.GetComponent<enemyController>().eMaxHealth = Random.Range(go.GetComponent<enemyController>().eMinHealth, go.GetComponent<enemyController>().eMaxHealth);
-            go.GetComponent<enemyController>().eMaxDefence = 50;
+        go.GetComponent<enemyController>().eMaxHealth = Random.Range(go.GetComponent<enemyController>().eMinHealth, go.GetComponent<enemyController>().eMaxHealth);
+        go.GetComponent<enemyController>().eMaxDefence = 50;
         go.GetComponent<enemyController>().eHealth = go.GetComponent<enemyController>().eMaxHealth;
+        go.GetComponent<enemyController>().goldDropped = Random.Range(go.GetComponent<enemyController>().minGold, go.GetComponent<enemyController>().maxGold);
 
     }
 

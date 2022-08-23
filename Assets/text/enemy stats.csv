@@ -1,3 +1,5 @@
-﻿Name,maxHealth,minHealth,maxDamage,minDamage
-goblin,50,30,10,0
-ogre,100,75,15,5
+﻿Name,maxHealth,minHealth,maxDamage,minDamage,maxGold,minGold
+goblin,60,40,10,0,30,10
+ogre,100,75,15,5,60,20
+goblin (sword),70,50,15,5,30,10
+goblin (archer),50,30,20,10,30,10
