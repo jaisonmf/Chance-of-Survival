@@ -20,6 +20,9 @@ public class orc : MonoBehaviour
         go.GetComponent<enemyController>().eMaxDamage = BosscSVReader.myEnemyList.enemy[0].maxDamage;
         go.GetComponent<enemyController>().eMinDamage = BosscSVReader.myEnemyList.enemy[0].minDamage;
 
+        go.GetComponent<enemyController>().minGold = BosscSVReader.myEnemyList.enemy[0].minGold;
+        go.GetComponent<enemyController>().maxGold = BosscSVReader.myEnemyList.enemy[0].maxGold;
+
 
     }
 

@@ -46,7 +46,7 @@ public class gameController : MonoBehaviour
             waveCount++;
            jamesAudioScript.StopAmbientMusic();
            jamesAudioScript.PlayCombatMusic();
-            waveCount = 10;
+            waveCount = 1;
             waveCounter.text = "Wave: " + waveCount;
         }
 

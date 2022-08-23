@@ -1,0 +1,11 @@
+﻿Name,Cost,What it does
+Health Vial,150,Max Health +50. Damage Range -2
+Shackles,125,Max Defence +20. Energy -1 
+Iron Gauntlets,200,Damage Range +2. Max Defence +10
+Explosives Strap,250,On 5th turn. Deal 50 damage to everything
+Cursed Seal,500,Damage Range +2 per turn. Enemy damage range +1 per turn
+Paladin Shield,450,Defend cost -1
+Heal Spell,300,Heal recovers 20 health instead of 10
+Water Bucket,350,Immunity to Fire
+Antidote,350,Immunity to Poison
+Alcohol,200,Max Damage +10. Max Defence -20

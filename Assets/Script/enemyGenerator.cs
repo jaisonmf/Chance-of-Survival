@@ -9,11 +9,15 @@ public class enemyGenerator : MonoBehaviour
     public enemyController enemyController;
     public CSVReader csvReader;
     public CSVReader bossCsvReader;
+    public ShopSpawn shopSpawn;
+   
 
     public int amount;
     public int maxSpawn = 4;
     public int minSpawn = 1;
     public GameObject enemyType;
+    public int shopCounter;
+    public int bossCounter;
     
 
     public GameObject go;
@@ -75,7 +79,7 @@ public class enemyGenerator : MonoBehaviour
             amount = 10;
         }
 
-        if (gameController.waveCount != 10)
+        if (shopCounter != 9 || bossCounter != 20)
         {
             {
                 for (int i = 0; i < amount; i++)
@@ -96,7 +100,12 @@ public class enemyGenerator : MonoBehaviour
             }
         }
 
-        if (gameController.waveCount == 10)
+        if(shopCounter == 9)
+        {
+            shopSpawn.ShopStart();
+        }
+
+        if (bossCounter == 20)
         {
             amount = 1;
             for (int i = 0; i < amount; i++)
@@ -146,6 +155,20 @@ public class enemyGenerator : MonoBehaviour
                 
             }
             gameController.aggrovated = false;
+        }
+    }
+
+
+    private void Update()
+    {
+        if(shopCounter == 9)
+        {
+            shopCounter = 1;
+        }
+
+        if(bossCounter == 20)
+        {
+            bossCounter = 0;
         }
     }
 

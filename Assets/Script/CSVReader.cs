@@ -44,7 +44,7 @@ public class CSVReader : MonoBehaviour
         for(int i = 0; i < tableSize; i++)
         {
             myEnemyList.enemy[i] = new Enemy();
-            myEnemyList.enemy[i].name = data[5 * (i + 1)];
+            myEnemyList.enemy[i].name = data[7 * (i + 1)];
             myEnemyList.enemy[i].maxHealth = int.Parse(data[7 * (i + 1) + 1]);
             myEnemyList.enemy[i].minHealth = int.Parse(data[7 * (i + 1) + 2]);
             myEnemyList.enemy[i].maxDamage = int.Parse(data[7 * (i + 1) + 3]);
