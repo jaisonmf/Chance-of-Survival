@@ -31,7 +31,8 @@ public class winScreen : MonoBehaviour
         }
         
         gameController.instructions.text = ("");
-        
+        enemyGenerator.shopCounter++;
+        enemyGenerator.bossCounter++;
         playerController.selecting = true;
         jamesAudioScript.StopCombatMusic();
         jamesAudioScript.PlayAmbientMusic();
@@ -64,8 +65,6 @@ public class winScreen : MonoBehaviour
             gameController.turnCounter.text = "Turn: " + gameController.turnCount;
             gameController.turnCount = 1;
 
-            enemyGenerator.shopCounter++;
-            enemyGenerator.bossCounter++;
 
             //PlayerController
             playerController.PlayerStart();

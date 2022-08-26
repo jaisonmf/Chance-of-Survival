@@ -79,7 +79,7 @@ public class enemyGenerator : MonoBehaviour
             amount = 10;
         }
 
-        if (shopCounter != 9 || bossCounter != 20)
+        if (shopCounter != 4 || bossCounter != 20)
         {
             {
                 for (int i = 0; i < amount; i++)
@@ -100,7 +100,7 @@ public class enemyGenerator : MonoBehaviour
             }
         }
 
-        if(shopCounter == 9)
+        if(shopCounter == 4)
         {
             shopSpawn.ShopStart();
         }

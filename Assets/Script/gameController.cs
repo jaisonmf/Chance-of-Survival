@@ -15,6 +15,7 @@ public class gameController : MonoBehaviour
     public enemyGenerator enemyGenerator;
     public winScreen winScreen;
     public jamesAudioScript jamesAudioScript;
+    public ShopSpawn shopSpawn;
 
     public Text turnCounter;
     public int turnCount;
@@ -44,8 +45,8 @@ public class gameController : MonoBehaviour
             WaveStart();
             turnCount++;
             waveCount++;
-           jamesAudioScript.StopAmbientMusic();
-           jamesAudioScript.PlayCombatMusic();
+            jamesAudioScript.StopAmbientMusic();
+            jamesAudioScript.PlayCombatMusic();
             waveCount = 1;
             waveCounter.text = "Wave: " + waveCount;
         }
@@ -54,12 +55,20 @@ public class gameController : MonoBehaviour
 
     public void WaveStart()
     {
-        enemyGenerator.EnemyGeneration();
-        gameStart = true;
-        generated = true;
-        PlayerTurn();
-        jamesAudioScript.StopAmbientMusic();
-        jamesAudioScript.PlayCombatMusic();
+        if(enemyGenerator.shopCounter != 4)
+        {
+            enemyGenerator.EnemyGeneration();
+            gameStart = true;
+            generated = true;
+            PlayerTurn();
+            jamesAudioScript.StopAmbientMusic();
+            jamesAudioScript.PlayCombatMusic();
+        }
+        else
+        {
+            shopSpawn.ShopStart();
+        }
+        
 
     }
     public void PlayerTurn()
